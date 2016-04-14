@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.com.managersystems.guardasaude.LoginActivity">
+    tools:context=".ui.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5">
 
-        <TextView
+        <ImageView
+            android:id="@+id/gs_login_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="@string/app_name_login"
+            android:src="@drawable/gs_logo"
+            android:visibility="invisible"
             android:textSize="35sp" />
 
     </RelativeLayout>
@@ -80,6 +82,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16sp" />
+        <ImageView
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:src="@drawable/ic_check_circle_36dp"
+            android:layout_marginTop="16sp"
+            android:layout_gravity="center"
+            android:id="@+id/gs_login_succes_imageview"
+            />
 
         <TextView
             android:id="@+id/gs_login_progress_text"
