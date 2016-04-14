@@ -23,4 +23,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
+    //Support for fragments and more
+    compile 'com.android.support:support-v4:23.2.1'
+    //Support for material design components
+    compile 'com.android.support:design:23.2.1'
+    //Support for binding views in your java classes
+    compile 'com.jakewharton:butterknife:7.0.1'
 }

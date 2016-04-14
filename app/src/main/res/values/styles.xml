@@ -7,5 +7,31 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <!--Theme used for the login application-->
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--Button Styles-->
+    <style name="LoginButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorControlHighlight">@color/colorPrimaryLight</item>
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <!--Input Styles-->
+    <style name="LoginInput" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorControlNormal">@color/colorPrimary</item>
+        <item name="android:colorControlHighlight">@color/colorPrimaryLight</item>
+        <item name="android:colorControlActivated">@color/colorPrimaryLight</item>
+    </style>
+    <!-- Text Appearance Styles-->
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+    <item name="android:textColor">@color/colorPrimaryLight</item>
+    </style>
+    <style name="TextAppearance.App.Authentication.Progress" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
 </resources>
