@@ -9,4 +9,5 @@
     <string name="Filter">Filter</string>
     <string name="Notifications">Notifications</string>
     <string name="Messages">Messages</string>
+    <string name="login_succes">Succes</string>
 </resources>

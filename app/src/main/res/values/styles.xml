@@ -22,7 +22,7 @@
 
     <!--Input Styles-->
     <style name="LoginInput" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorControlNormal">@color/colorPrimary</item>
+        <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
         <item name="android:colorControlHighlight">@color/colorPrimaryLight</item>
         <item name="android:colorControlActivated">@color/colorPrimaryLight</item>
     </style>
