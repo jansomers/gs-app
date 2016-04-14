@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private LoginPresenter presenter;
 
-
     private final boolean VALIDCREDENTIALS=true;
 
 
