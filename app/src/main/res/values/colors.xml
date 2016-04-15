@@ -7,9 +7,13 @@
 
     <!-- Complementary colors -->
     <color name="colorPrimaryLight">#B2DFDB</color>
+    <color name="colorPrimary400">#26A69A</color>
+    <color name="colorPrimary300">#4DB6AC</color>
+    <color name="colorPrimary100">#B2DFDB</color>
     <color name="colorAccent100">#F0F4C3</color>
     <color name="colorAccent200">#E6EE9C</color>
     <color name="colorAccent300">#DCE775</color>
+    <color name="colorError">#e53935</color>
 
     <!-- Text -->
     <color name="colorTextColor">#424242</color>

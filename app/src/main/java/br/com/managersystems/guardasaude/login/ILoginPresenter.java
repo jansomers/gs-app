@@ -6,4 +6,5 @@ package br.com.managersystems.guardasaude.login;
 public interface ILoginPresenter {
 
     void authorizeLogin(String email, String password);
+    void retrieveDomains();
 }

@@ -10,6 +10,9 @@
     <string name="Notifications">Notifications</string>
     <string name="Messages">Messages</string>
     <string name="login_succes">Succes</string>
+    <string name="login_failed">Login failed!</string>
+    <string name="login_manager">Manager Identified!</string>
+    <string name="choose_domain">Choose domain</string>
     <string name="find">Find</string>
     <string name="cancel">Cancel</string>
     <string name="findnew">Find new exam</string>
