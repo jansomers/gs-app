@@ -6,6 +6,8 @@ import br.com.managersystems.guardasaude.ui.LoginActivity;
  * Created by Jan on 14/04/2016.
  */
 public class LoginPresenter implements ILoginPresenter, OnLoginFinishedListener {
+
+
     public LoginPresenter(LoginActivity loginActivity) {
     }
 
