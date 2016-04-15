@@ -29,4 +29,6 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     //Support for binding views in your java classes
     compile 'com.jakewharton:butterknife:7.0.1'
+    //Support for cardview
+    compile 'com.android.support:cardview-v7:23.0.+'
 }

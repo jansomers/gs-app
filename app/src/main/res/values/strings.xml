@@ -10,4 +10,11 @@
     <string name="Notifications">Notifications</string>
     <string name="Messages">Messages</string>
     <string name="login_succes">Succes</string>
+    <string name="find">Find</string>
+    <string name="cancel">Cancel</string>
+    <string name="findnew">Find new exam</string>
+    <string name="Protocol">Protocol</string>
+    <string name="Information">Information</string>
+    <string name="Report">Report</string>
+    <string name="Images">Images</string>
 </resources>
