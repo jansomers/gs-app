@@ -41,8 +41,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private LoginPresenter presenter;
 
+<<<<<<< HEAD:app/src/main/java/br/com/managersystems/guardasaude/LoginActivity.java
+    private final boolean VALIDCREDENTIALS=true;
+=======
 
     private final boolean VALIDCREDENTIALS = true;
+>>>>>>> origin/master:app/src/main/java/br/com/managersystems/guardasaude/ui/LoginActivity.java
 
 
     @Override
