@@ -10,4 +10,8 @@
     <color name="colorAccent100">#F0F4C3</color>
     <color name="colorAccent200">#E6EE9C</color>
     <color name="colorAccent300">#DCE775</color>
+
+    <!-- Text -->
+    <color name="colorTextColor">#424242</color>
+    <color name="colorTextColorLight">#9E9E9E</color>
 </resources>

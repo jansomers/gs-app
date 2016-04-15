@@ -41,12 +41,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private LoginPresenter presenter;
 
-<<<<<<< HEAD:app/src/main/java/br/com/managersystems/guardasaude/LoginActivity.java
-    private final boolean VALIDCREDENTIALS=true;
-=======
 
     private final boolean VALIDCREDENTIALS = true;
->>>>>>> origin/master:app/src/main/java/br/com/managersystems/guardasaude/ui/LoginActivity.java
 
 
     @Override
@@ -102,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         authenticatingProgressText.setVisibility(View.VISIBLE);
         String email = gsUsernameEditText.getText().toString();
 
-        presenter.authorizeLogin();
+       // presenter.authorizeLogin();
         //TODO Remove because only for testing purposes
 
         new AsyncTask<Void, Void, Void>() {

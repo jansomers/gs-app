@@ -1,4 +1,4 @@
-package br.com.managersystems.guardasaude;
+package br.com.managersystems.guardasaude.dummydata;
 
 
 public class DummyDatabase {

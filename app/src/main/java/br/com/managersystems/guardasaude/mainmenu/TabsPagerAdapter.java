@@ -1,10 +1,12 @@
-package br.com.managersystems.guardasaude.examoverview;
+package br.com.managersystems.guardasaude.mainmenu;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import br.com.managersystems.guardasaude.R;
+
+import br.com.managersystems.guardasaude.ui.ExamOverviewFragment;
+import br.com.managersystems.guardasaude.ui.MessagesFragment;
+import br.com.managersystems.guardasaude.ui.NotificationFragment;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter{
 

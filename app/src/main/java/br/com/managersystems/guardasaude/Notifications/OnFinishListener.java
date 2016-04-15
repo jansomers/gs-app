@@ -1,4 +1,4 @@
-package br.com.managersystems.guardasaude.examoverview;
+package br.com.managersystems.guardasaude.Notifications;
 
 
 public interface OnFinishListener {

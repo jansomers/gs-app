@@ -1,4 +1,4 @@
-package br.com.managersystems.guardasaude.examoverview;
+package br.com.managersystems.guardasaude.ui;
 
 
 import android.support.v4.app.Fragment;
@@ -6,22 +6,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import javax.xml.datatype.Duration;
 
 import br.com.managersystems.guardasaude.R;
+import br.com.managersystems.guardasaude.Notifications.INotificationView;
+import br.com.managersystems.guardasaude.Notifications.INotificationPresenter;
+import br.com.managersystems.guardasaude.Notifications.NotificationPresenter;
 
-public class NotificationFragment extends Fragment implements IMainTab{
-    IMainTabPresenter presenter;
+public class NotificationFragment extends Fragment implements INotificationView {
+    INotificationPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-        presenter = new MainTabPresenter(this);
+        presenter = new NotificationPresenter(this);
         notificationsClicked();
         return view;
     }

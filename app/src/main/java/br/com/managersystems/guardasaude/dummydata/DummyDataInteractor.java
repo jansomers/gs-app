@@ -1,6 +1,6 @@
-package br.com.managersystems.guardasaude.examoverview;
+package br.com.managersystems.guardasaude.dummydata;
 
-import br.com.managersystems.guardasaude.DummyDatabase;
+import br.com.managersystems.guardasaude.Notifications.OnFinishListener;
 
 public class DummyDataInteractor {
 
