@@ -33,4 +33,7 @@
         <item>@drawable/image_2</item>
         <item>@drawable/image_3</item>
     </string-array>
+    <string name="search">Search</string>
+    <string name="menu_search">Search menu</string>
+    <string name="search_hint">search hint</string>
 </resources>

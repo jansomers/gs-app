@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     //Support for fragments and more
     compile 'com.android.support:support-v4:23.2.1'
+
     //Support for material design components
     compile 'com.android.support:design:23.2.1'
     //Support for binding views in your java classes
@@ -41,7 +42,15 @@ dependencies {
 
     //Cardview
     compile 'com.android.support:cardview-v7:23.2.1'
+
     // Needed for @Generated annotation (missing in Android API jar)
     // No longer needed in dagger >= 2.1-SNAPSHOT (github.com/google/dagger/issues/95)
     //compile 'javax.annotation:jsr250-api:1.0'
+
+    //Retrofit
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+
 }
