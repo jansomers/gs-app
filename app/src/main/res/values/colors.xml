@@ -18,4 +18,5 @@
     <!-- Text -->
     <color name="colorTextColor">#424242</color>
     <color name="colorTextColorLight">#9E9E9E</color>
+    <color name="colorBackgroundLight">#e2e2e2</color>
 </resources>
