@@ -60,14 +60,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         ButterKnife.bind(this);
 
         presenter = new LoginPresenter(this);
-        init(VALIDCREDENTIALS, authenticatingProgressBar, authenticatingProgressText, authenticatingFinishedImageView);
+        init();
 
 
     }
 
-    private void init(boolean validcredentials, ProgressBar authenticatingProgressBar, TextView authenticatingProgressText, ImageView authenticatingSuccesImageView) {
+    private void init() {
         activateLogo();
-        instantiateDummyData(!validcredentials);
+        instantiateDummyData(!VALIDCREDENTIALS);
         instantiateProgressBar();
     }
 

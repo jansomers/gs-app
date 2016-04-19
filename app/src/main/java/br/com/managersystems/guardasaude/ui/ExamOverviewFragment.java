@@ -1,17 +1,14 @@
 package br.com.managersystems.guardasaude.ui;
 
 
-import android.app.DialogFragment;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 
 import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.examoverview.IExamOverview;
@@ -22,6 +19,8 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
 
     private FloatingActionButton fab;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,10 +28,16 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
         View view = inflater.inflate(R.layout.fragment_examoverview, container, false);
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
         onClickFab();
+        setHasOptionsMenu(true);
         return view;
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public void onClickFab() {
@@ -40,10 +45,9 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
             @Override
             public void onClick(View view) {
                 NewExamDialogFragment newExamDialogFragment = new NewExamDialogFragment();
-                newExamDialogFragment.show(getActivity().getFragmentManager(),"dialog");
+                newExamDialogFragment.show(getActivity().getFragmentManager(), "dialog");
             }
         });
     }
-
 
 }

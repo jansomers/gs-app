@@ -20,4 +20,7 @@
     <string name="Information">Information</string>
     <string name="Report">Report</string>
     <string name="Images">Images</string>
+    <string name="search">Search</string>
+    <string name="menu_search">Search menu</string>
+    <string name="search_hint">search hint</string>
 </resources>

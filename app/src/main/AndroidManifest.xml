@@ -21,7 +21,6 @@
 
         <activity
             android:name=".ui.MainTabActivity">
-
         </activity>
         <activity android:name=".ui.ExamTabActivity">
 
