@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import br.com.managersystems.guardasaude.R;
+import butterknife.ButterKnife;
 
 public class InformationFragment extends Fragment {
     @Override
@@ -14,6 +15,7 @@ public class InformationFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_information, container, false);
+        ButterKnife.bind(this, view);
 
         return view;
     }

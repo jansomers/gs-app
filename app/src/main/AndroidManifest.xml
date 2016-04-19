@@ -26,6 +26,9 @@
         <activity android:name=".ui.ExamTabActivity">
 
         </activity>
+        <activity android:name=".ui.FullScreenImageActivity">
+
+        </activity>
     </application>
 
 </manifest>

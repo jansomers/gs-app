@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.examoverview.IExamOverview;
-
+import butterknife.ButterKnife;
 
 
 public class ExamOverviewFragment extends Fragment implements IExamOverview {
@@ -27,6 +27,8 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_examoverview, container, false);
+        ButterKnife.bind(this, view);
+
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
         onClickFab();
         return view;

@@ -11,6 +11,7 @@ import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.Notifications.INotificationView;
 import br.com.managersystems.guardasaude.Notifications.INotificationPresenter;
 import br.com.managersystems.guardasaude.Notifications.NotificationPresenter;
+import butterknife.ButterKnife;
 
 public class NotificationFragment extends Fragment implements INotificationView {
     INotificationPresenter presenter;
@@ -20,6 +21,8 @@ public class NotificationFragment extends Fragment implements INotificationView 
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
+        ButterKnife.bind(this, view);
+
         presenter = new NotificationPresenter(this);
         notificationsClicked();
         return view;
