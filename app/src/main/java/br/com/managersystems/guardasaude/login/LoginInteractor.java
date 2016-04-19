@@ -1,64 +1,71 @@
 package br.com.managersystems.guardasaude.login;
 
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
+
+import br.com.managersystems.guardasaude.login.domain.WebResponse;
+import br.com.managersystems.guardasaude.util.AuthenticationApi;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Jan on 15/04/2016.
  */
 public class LoginInteractor implements ILoginInteractor {
 
+    OkHttpClient okHttpClient = new OkHttpClient();
+    private final String BASE_URL= "https://demo.guardasaude.com.br/";
+    private AuthenticationApi client;
 
-    private final String MANAGER_DOMAIN= "managersystems.com.br";
+    public LoginInteractor() {
+        client = initiateRetrofit();           }
+
+
+
+
+    private AuthenticationApi initiateRetrofit() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(AuthenticationApi.class);
+    }
+
+
     @Override
     public void validateCredentials(final OnLoginFinishedListener listener, final String email, final String password) {
         //TODO Remove because only for testing
         new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                if (isValidEmail(email)) {
-                    Log.d(LoginInteractor.class.getSimpleName(), "Email is VALID");
-                    if (isCorrectPassword(password)) {
-                        Log.d(LoginInteractor.class.getSimpleName(), "Password is VALID");
-                        if (isManager(email)) {
-                            Log.d(LoginInteractor.class.getSimpleName(), "Authenticated manager account");
-                            listener.onSuccess(true);
-                        }
-                        else {
-                            Log.d(LoginInteractor.class.getSimpleName(), "Authenticated user account");
-                            listener.onSuccess(false);
-                        }
+            @Override
+            public void run() {
+                if (client == null) {
+                    initiateRetrofit();
+                }
+                Call<WebResponse> call = client.authenticateUser(email,password);
+                call.enqueue(new Callback<WebResponse>() {
+                    @Override
+                    public void onResponse(Call<WebResponse> call, Response<WebResponse> response) {
+                        Log.d(this.getClass().getSimpleName(),"IN ONRESPONSE CALL");
+                        listener.onSuccess(false);
                     }
-                    else {
-                        Log.d(LoginInteractor.class.getSimpleName(), "Password is INVALID");
+
+                    @Override
+                    public void onFailure(Call<WebResponse> call, Throwable t) {
+                        Log.d(this.getClass().getSimpleName(),"IN ONFAILURE CALL", t.getCause());
+
                         listener.onFailure();
                     }
+                });
 
 
-                } else {
-                    Log.d(LoginInteractor.class.getSimpleName(), "Email is INVALID");
-                    listener.onFailure();
-                }
             }
         }, 2000);
 
     }
 
-
-    private boolean isCorrectPassword(String password) {
-        Log.d(LoginInteractor.class.getSimpleName(), "Validating password...");
-        return password.equals(DummyLogin.getDummyPassword());
-    }
-
-    private boolean isManager(String email) {
-        Log.d(LoginInteractor.class.getSimpleName(), "Validating manager...");
-        String domain = email.split("@")[1];
-        return domain.equals(MANAGER_DOMAIN);
-    }
-
-    private boolean isValidEmail(String email) {
-        Log.d(LoginInteractor.class.getSimpleName(), "Validating email...");
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
 }

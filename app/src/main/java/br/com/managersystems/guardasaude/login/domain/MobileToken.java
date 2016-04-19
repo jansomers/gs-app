@@ -12,4 +12,6 @@ public class MobileToken {
     private Date startDate;
     //dd/MM/yyyy(HH:mm:ss)
     private Date endDate;
+
+
 }

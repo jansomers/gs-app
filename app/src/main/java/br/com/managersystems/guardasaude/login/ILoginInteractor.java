@@ -5,5 +5,4 @@ package br.com.managersystems.guardasaude.login;
  */
 public interface ILoginInteractor {
     void validateCredentials(OnLoginFinishedListener listener, String email, String password);
-
 }
