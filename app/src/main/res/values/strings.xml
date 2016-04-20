@@ -36,4 +36,5 @@
     <string name="search">Search</string>
     <string name="menu_search">Search menu</string>
     <string name="search_hint">search hint</string>
+    <string name="exam_literal">EXAM</string>
 </resources>
