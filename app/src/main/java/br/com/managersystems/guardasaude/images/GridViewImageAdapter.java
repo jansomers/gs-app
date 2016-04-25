@@ -3,16 +3,12 @@ package br.com.managersystems.guardasaude.images;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import br.com.managersystems.guardasaude.ui.FullScreenImageActivity;
@@ -20,24 +16,24 @@ import br.com.managersystems.guardasaude.ui.FullScreenImageActivity;
 public class GridViewImageAdapter extends BaseAdapter {
 
     private Activity activity;
-    private ArrayList<Bitmap> filePaths = new ArrayList<Bitmap>();
+    private ArrayList<Bitmap> examImages = new ArrayList<Bitmap>();
     private int imageWidth;
 
-    public GridViewImageAdapter(Activity activity, ArrayList<Bitmap> filePaths,
+    public GridViewImageAdapter(Activity activity, ArrayList<Bitmap> examImages,
                                 int imageWidth) {
         this.activity = activity;
-        this.filePaths = filePaths;
+        this.examImages = examImages;
         this.imageWidth = imageWidth;
     }
 
     @Override
     public int getCount() {
-        return this.filePaths.size();
+        return this.examImages.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return this.filePaths.get(position);
+        return this.examImages.get(position);
     }
 
     @Override
@@ -54,10 +50,9 @@ public class GridViewImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        Bitmap bitmap = filePaths.get(position);
+        Bitmap bitmap = examImages.get(position);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(imageWidth,
-                imageWidth));
+        imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
         imageView.setImageBitmap(bitmap);
 
         imageView.setOnClickListener(new OnImageClickListener(position));
@@ -67,19 +62,16 @@ public class GridViewImageAdapter extends BaseAdapter {
 
     class OnImageClickListener implements View.OnClickListener {
 
-        int _postion;
+        int postion;
 
-        // constructor
         public OnImageClickListener(int position) {
-            this._postion = position;
+            this.postion = position;
         }
 
         @Override
         public void onClick(View v) {
-            // on selecting grid view image
-            // launch full screen activity
             Intent i = new Intent(activity, FullScreenImageActivity.class);
-            i.putExtra("position", _postion);
+            i.putExtra("position", postion);
             activity.startActivity(i);
         }
 

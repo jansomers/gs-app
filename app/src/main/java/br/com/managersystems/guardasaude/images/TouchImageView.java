@@ -100,7 +100,7 @@ public class TouchImageView extends ImageView {
 
                 setImageMatrix(matrix);
                 invalidate();
-                return true; // indicate event was handled
+                return true;
             }
 
         });
@@ -110,8 +110,7 @@ public class TouchImageView extends ImageView {
         maxScale = x;
     }
 
-    private class ScaleListener extends
-            ScaleGestureDetector.SimpleOnScaleGestureListener {
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
             mode = ZOOM;
@@ -188,9 +187,7 @@ public class TouchImageView extends ImageView {
         viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        //
         // Rescales image on rotation
-        //
         if (oldMeasuredHeight == viewWidth && oldMeasuredHeight == viewHeight
                 || viewWidth == 0 || viewHeight == 0)
             return;
@@ -198,7 +195,7 @@ public class TouchImageView extends ImageView {
         oldMeasuredWidth = viewWidth;
 
         if (saveScale == 1) {
-            // Fit to screen.
+            // Fit image to screen
             float scale;
 
             Drawable drawable = getDrawable();

@@ -15,9 +15,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Jan on 15/04/2016.
- */
+
 public class LoginInteractor implements ILoginInteractor {
 
     private final String BASE_URL= "https://guardasaude.com.br/";

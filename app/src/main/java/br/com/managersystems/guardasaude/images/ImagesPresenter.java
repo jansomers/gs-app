@@ -1,7 +1,6 @@
 package br.com.managersystems.guardasaude.images;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -12,13 +11,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.GridView;
-import android.widget.Toast;
-
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
 
 import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.ui.ImagesFragment;
@@ -26,7 +19,7 @@ import br.com.managersystems.guardasaude.ui.ImagesFragment;
 public class ImagesPresenter implements IImagesPresenter {
     private ImagesFragment imagesFragment;
     private GridView gridView;
-    private static final int GRID_PADDING = 8;
+    private static final int GRID_PADDING = 1;
     private static final int NUM_OF_COLUMNS = 2;
     private int columnWidth;
 
@@ -47,8 +40,7 @@ public class ImagesPresenter implements IImagesPresenter {
         gridView.setNumColumns(NUM_OF_COLUMNS);
         gridView.setColumnWidth(columnWidth);
         gridView.setStretchMode(GridView.NO_STRETCH);
-        gridView.setPadding((int) padding, (int) padding, (int) padding,
-                (int) padding);
+        gridView.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
         gridView.setHorizontalSpacing((int) padding);
         gridView.setVerticalSpacing((int) padding);
     }
@@ -72,7 +64,7 @@ public class ImagesPresenter implements IImagesPresenter {
     }
 
     @Override
-    public ArrayList<Bitmap> getFilePaths() {
+    public ArrayList<Bitmap> getImagesForExam() {
         final ArrayList<Bitmap> imageItems = new ArrayList<>();
         TypedArray imgs = imagesFragment.getResources().obtainTypedArray(R.array.image_ids);
         for (int i = 0; i < imgs.length(); i++) {
@@ -82,13 +74,16 @@ public class ImagesPresenter implements IImagesPresenter {
         return imageItems;
     }
 
+    @Override
     public Bitmap scaleImage(Bitmap bitmap) {
         int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
         return Bitmap.createScaledBitmap(bitmap, 512, nh, true);
     }
 
-
+    @Override
     public int getColumnWidth() {
         return columnWidth;
     }
+
+
 }

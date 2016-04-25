@@ -1,4 +1,9 @@
 package br.com.managersystems.guardasaude.examoverview;
 
-public interface IExamOverviewPresenter {
+import java.util.List;
+
+import br.com.managersystems.guardasaude.examoverview.domain.Exam;
+
+public interface IExamOverviewPresenter  {
+    void getExamList();
 }

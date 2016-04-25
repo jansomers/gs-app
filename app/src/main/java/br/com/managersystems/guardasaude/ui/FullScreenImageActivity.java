@@ -32,7 +32,7 @@ public class FullScreenImageActivity extends Activity {
 
             fullScreenImagePresenter = new FullScreenImagePresenter(this);
 
-            adapter = new FullScreenImageAdapter(FullScreenImageActivity.this,fullScreenImagePresenter.getFilePaths());
+            adapter = new FullScreenImageAdapter(FullScreenImageActivity.this,fullScreenImagePresenter.getExamImages());
 
             viewPager.setAdapter(adapter);
 

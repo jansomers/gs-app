@@ -1,9 +1,5 @@
 package br.com.managersystems.guardasaude.login;
 
-import java.util.ArrayList;
-
-import br.com.managersystems.guardasaude.login.domain.MobileToken;
-
 /**
  * Created by Jan on 14/04/2016.
  */

@@ -7,5 +7,7 @@ import java.util.ArrayList;
 public interface IImagesPresenter {
     void InitializeGridLayout();
     int getScreenWidth();
-    ArrayList<Bitmap> getFilePaths();
+    ArrayList<Bitmap> getImagesForExam();
+    Bitmap scaleImage(Bitmap bitmap);
+    int getColumnWidth();
 }

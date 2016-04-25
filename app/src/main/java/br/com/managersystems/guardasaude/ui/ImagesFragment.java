@@ -37,7 +37,7 @@ public class ImagesFragment extends Fragment implements IImagesView {
 
         imagesPresenter = new ImagesPresenter(this,gridView);
 
-        adapter = new GridViewImageAdapter(activity, imagesPresenter.getFilePaths(), imagesPresenter.getColumnWidth());
+        adapter = new GridViewImageAdapter(activity, imagesPresenter.getImagesForExam(), imagesPresenter.getColumnWidth());
 
         gridView.setAdapter(adapter);
 
