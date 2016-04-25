@@ -1,8 +1,9 @@
 package br.com.managersystems.guardasaude.login;
 
-/**
- * Created by Jan on 14/04/2016.
- */
+import java.util.ArrayList;
+
+import br.com.managersystems.guardasaude.login.domain.MobileToken;
+
 public interface OnLoginFinishedListener {
 
     void onHandleRequestLoginAttemptFailure();
