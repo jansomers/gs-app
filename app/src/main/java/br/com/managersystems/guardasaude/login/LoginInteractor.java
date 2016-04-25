@@ -5,7 +5,6 @@ import android.util.Log;
 
 import br.com.managersystems.guardasaude.login.domain.WebResponse;
 import br.com.managersystems.guardasaude.util.AuthenticationApi;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,12 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LoginInteractor implements ILoginInteractor {
 
-    OkHttpClient okHttpClient = new OkHttpClient();
     private final String BASE_URL= "https://demo.guardasaude.com.br/";
     private AuthenticationApi client;
 
     public LoginInteractor() {
-        client = initiateRetrofit();           }
+        client = initiateRetrofit();
+    }
 
 
 
@@ -30,7 +29,6 @@ public class LoginInteractor implements ILoginInteractor {
     private AuthenticationApi initiateRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(AuthenticationApi.class);

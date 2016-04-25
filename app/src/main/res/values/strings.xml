@@ -37,4 +37,7 @@
     <string name="menu_search">Search menu</string>
     <string name="search_hint">search hint</string>
     <string name="exam_literal">EXAM</string>
+    <string name="comments">Comments</string>
+    <string name="Image_Overview">IMAGE OVERVIEW</string>
+    <string name="show_comments">SHOW COMMENTS</string>
 </resources>

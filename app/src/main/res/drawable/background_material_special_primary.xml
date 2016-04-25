@@ -9,7 +9,7 @@
 
     <item android:top="80dp">
         <shape android:shape="rectangle" >
-            <solid android:color="@color/colorAccent100" />
-        </shape>
-    </item>
-</layer-list>
+            <solid android:color="@color/colorBackgroundDefault"/>
+            </shape>
+        </item>
+    </layer-list>

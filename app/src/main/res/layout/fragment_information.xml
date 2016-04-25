@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.AppCompat.Button.Borderless.Colored"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="top"
     android:background="@drawable/background_material_special_primary">
 
     <LinearLayout
@@ -9,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/colorAccent100"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/background_light"
         android:elevation="1dp"
         android:orientation="vertical">
 
@@ -20,12 +22,12 @@
             android:padding="6dp">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:orientation="horizontal"
-                android:textAlignment="center"
-                android:id="@+id/linearLayout"
-                android:layout_centerInParent="true">
+                android:textAlignment="center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,11 +49,10 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:src="@drawable/ic_check_circle_36dp"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                />
+                android:layout_alignParentTop="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_check_circle_36dp" />
 
 
         </RelativeLayout>
@@ -87,10 +88,10 @@
                         android:id="@+id/gs_exam_information_clinic_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="5dp"
                         android:text="GKSHealth"
                         android:textAlignment="textStart"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                        android:padding="5dp" />
+                        android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView" />
 
                 </LinearLayout>
 
@@ -99,8 +100,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -111,8 +112,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Alessandro Da Silva"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+                        android:textAlignment="textStart"
+                        android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView"
+                        android:padding="5dp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -147,10 +149,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="5dp"
                         android:text="23/04/2009"
                         android:textAlignment="textStart"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                        android:padding="5dp" />
+                        android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView" />
 
                 </LinearLayout>
 
@@ -158,9 +160,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:gravity="center">
+                    android:padding="5dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -171,8 +173,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Luiz Dantas"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@android:style/TextAppearance.Material.Widget.TextView"
+                        android:padding="5dp" />
 
                 </LinearLayout>
 
@@ -183,17 +186,42 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:padding="6dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:padding="6dp">
+                android:background="@android:color/background_light"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@android:color/transparent"
+                    android:drawableRight="@drawable/ic_expand_more_24dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/comments"
+                    android:textAlignment="textEnd"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:drawableRight="@drawable/ic_chevron_right_24dp"
+                    android:text="@string/Images"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="textEnd"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
 
             </LinearLayout>
+
         </RelativeLayout>
 
 

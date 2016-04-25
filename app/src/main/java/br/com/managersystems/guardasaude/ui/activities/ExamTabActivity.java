@@ -1,4 +1,4 @@
-package br.com.managersystems.guardasaude.ui;
+package br.com.managersystems.guardasaude.ui.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
