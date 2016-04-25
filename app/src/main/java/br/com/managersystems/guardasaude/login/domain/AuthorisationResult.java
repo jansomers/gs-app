@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Jan on 19/04/2016.
  */
-public class WebResponse {
+public class AuthorisationResult {
 
     private String success;
     private String code;

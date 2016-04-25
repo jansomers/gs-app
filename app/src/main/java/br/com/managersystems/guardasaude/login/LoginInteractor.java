@@ -3,7 +3,11 @@ package br.com.managersystems.guardasaude.login;
 import android.os.Handler;
 import android.util.Log;
 
-import br.com.managersystems.guardasaude.login.domain.WebResponse;
+import java.util.ArrayList;
+
+import br.com.managersystems.guardasaude.login.domain.AuthorisationResult;
+import br.com.managersystems.guardasaude.login.domain.BaseUser;
+import br.com.managersystems.guardasaude.login.domain.MobileToken;
 import br.com.managersystems.guardasaude.util.AuthenticationApi;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LoginInteractor implements ILoginInteractor {
 
-    private final String BASE_URL= "https://demo.guardasaude.com.br/";
+    private final String BASE_URL= "https://guardasaude.com.br/";
     private AuthenticationApi client;
 
     public LoginInteractor() {
@@ -36,7 +40,7 @@ public class LoginInteractor implements ILoginInteractor {
 
 
     @Override
-    public void validateCredentials(final OnLoginFinishedListener listener, final String email, final String password) {
+    public void handleRequestLoginAttempt(final OnLoginFinishedListener listener, final String email64, final String password64) {
         //TODO Remove because only for testing
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -44,19 +48,26 @@ public class LoginInteractor implements ILoginInteractor {
                 if (client == null) {
                     initiateRetrofit();
                 }
-                Call<WebResponse> call = client.authenticateUser(email,password);
-                call.enqueue(new Callback<WebResponse>() {
+                Call<AuthorisationResult> call = client.authenticateUser(email64, password64);
+                call.enqueue(new Callback<AuthorisationResult>() {
                     @Override
-                    public void onResponse(Call<WebResponse> call, Response<WebResponse> response) {
-                        Log.d(this.getClass().getSimpleName(),"IN ONRESPONSE CALL");
-                        listener.onSuccess(false);
+                    public void onResponse(Call<AuthorisationResult> call, Response<AuthorisationResult> response) {
+                        if (response.body() == null) {
+                            Log.d(this.getClass().getSimpleName(), "Response has an empty body, unauthorizing");
+                            listener.onHandleRequestLoginAttemptFailure();
+                        }
+                        else {
+                            AuthorisationResult authorisationResult = response.body();
+                            handleAuthorisationResult(listener, authorisationResult, email64, password64);
+
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<WebResponse> call, Throwable t) {
+                    public void onFailure(Call<AuthorisationResult> call, Throwable t) {
                         Log.d(this.getClass().getSimpleName(),"IN ONFAILURE CALL", t.getCause());
 
-                        listener.onFailure();
+                        listener.onHandleRequestLoginAttemptFailure();
                     }
                 });
 
@@ -64,6 +75,21 @@ public class LoginInteractor implements ILoginInteractor {
             }
         }, 2000);
 
+    }
+
+    @Override
+    public void handleAuthorisationResult(OnLoginFinishedListener listener, AuthorisationResult authorisationResult, String email64, String password64) {
+
+        if (authorisationResult.getSuccess().equals("false"))
+            listener.onAuthorizeFailure(authorisationResult.getCode());
+        else {
+            // Setting the BaseUser
+            BaseUser.getInstance().setIdentifierB64(email64);
+            // Generating the new Token
+            MobileToken token = new MobileToken(BaseUser.getInstance(), authorisationResult.getToken());
+            // Letting the presenter know we have a succesful authentication
+            listener.onAuthorizeSuccess((ArrayList<String>) authorisationResult.getRoles(), token);
+        }
     }
 
 }

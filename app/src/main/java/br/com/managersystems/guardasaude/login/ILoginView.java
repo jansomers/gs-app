@@ -2,19 +2,22 @@ package br.com.managersystems.guardasaude.login;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jan on 14/04/2016.
- */
+
 public interface ILoginView {
-    void navigateToOverviewActivity();
-
-    void showServerOptionDialog();
-
+    // Retrieving domains for admins (currently not correct)
     void domainRetrievedSuccesfully(ArrayList<AccessDomain> accessDomainArrayList);
+    void domainRetrievedFailed();
 
-    void loginSuccess(boolean manager);
-
+    // Login results
+    void loginSuccess(boolean patient);
+    void requestFailed();
+    void loginFailed(String code);
     void loginFailed();
 
-    void domainRetrievedFailed();
+    // Navigation
+    void navigateToOverviewActivity(boolean patient);
+
+    void showRoleOptionDialog(ArrayList<String> roles);
+
+    void showServerOptionDialog();
 }

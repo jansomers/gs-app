@@ -3,6 +3,7 @@ package br.com.managersystems.guardasaude.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 
 import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.login.AccessDomain;
-import br.com.managersystems.guardasaude.login.DummyLogin;
 import br.com.managersystems.guardasaude.login.ILoginView;
 import br.com.managersystems.guardasaude.login.LoginPresenter;
+import br.com.managersystems.guardasaude.login.domain.UserRoleEnum;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private LoginPresenter presenter;
     private final boolean VALIDCREDENTIALS = true;
+    private SharedPreferences sp;
 
 
 
@@ -58,8 +60,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-        presenter = new LoginPresenter(this);
+        sp = getPreferences(MODE_PRIVATE);
+        //TODO Redirect to login if no accesstoken
+        presenter = new LoginPresenter(this, sp);
         init();
 
 
@@ -67,70 +70,52 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private void init() {
         activateLogo();
-        instantiateDummyData(!VALIDCREDENTIALS);
+        //TODO Remove after testing
+        setStartingCredentials("doctor", "admin");
         instantiateProgressBar();
     }
-
     private void activateLogo() {
         Animation logoAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slow_fade_in_animation);
         gsLogo.setVisibility(View.VISIBLE);
         gsLogo.startAnimation(logoAnimation);
     }
-
+    private void setStartingCredentials(String doctor, String admin) {
+        gsUsernameEditText.setText(doctor);
+        gsPasswordEditText.setText(admin);
+    }
     private void instantiateProgressBar() {
         authenticatingProgressBar.setVisibility(View.GONE);
         authenticatingProgressText.setVisibility(View.GONE);
         authenticatingFinishedImageView.setVisibility(View.GONE);
     }
 
-    /**
-     * This method is used to instantiate dummy data while under development
-     * TODO Remove this class when no longer needed
-     *
-     * @param type receives the type of the login. Either valid (true) or fake (false)
-     */
-    private void instantiateDummyData(boolean type) {
-
-        if (type) {
-            gsUsernameEditText.setText(DummyLogin.getDummyUserName());
-            gsPasswordEditText.setText(DummyLogin.getDummyPassword());
-        } else {
-            gsUsernameEditText.setText(DummyLogin.getDummyManagerUsername());
-            gsPasswordEditText.setText(DummyLogin.getDummymanagerpasword());
-        }
-    }
 
     @OnClick(R.id.gs_login_btn)
     public void loginClicked(View view) {
         Log.d("LoginActivity: ", "Login button was clicked");
-        showAuthenticatingProgress();
         String email = gsUsernameEditText.getText().toString();
         String password = gsPasswordEditText.getText().toString();
-        presenter.authorizeLogin(email, password);
+        if (email.equals("") || password.equals("")) {
+            showEmptyCredentials();
+        }
+        else {
+            showAuthenticatingProgress();
+
+            presenter.authorizeLogin(email, password);
+        }
     }
 
-    private void showAuthenticatingProgress() {
-        authenticatingProgressBar.setVisibility(View.VISIBLE);
-        authenticatingProgressText.setText(getResources().getText(R.string.Authenticating));
-        authenticatingProgressText.setTextColor(ContextCompat.getColor(this, R.color.colorAccent300));
-        authenticatingProgressText.setVisibility(View.VISIBLE);
-        authenticatingFinishedImageView.setVisibility(View.GONE);
 
-    }
 
     @Override
-    public void navigateToOverviewActivity() {
+    public void navigateToOverviewActivity(boolean patient) {
         Intent intent = new Intent(this, MainTabActivity.class);
+        intent.putExtra("role", patient ? UserRoleEnum.ROLE_PATIENT.toString() : UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString());
+        Log.d(this.getClass().getSimpleName(), "Navigating to Maintabactivity as: " + intent.getStringExtra("role"));
         startActivity(intent);
 
-
     }
 
-    @Override
-    public void showServerOptionDialog() {
-        presenter.retrieveDomains();
-
-    }
 
     @Override
     public void domainRetrievedSuccesfully(ArrayList<AccessDomain> accessDomainArrayList) {
@@ -143,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //builder.setTitle(getResources().getText(R.string.choose_domain));
         builder.setCustomTitle(getLayoutInflater().inflate(R.layout.domain_dialog_title, null));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.domain_dialog,domains);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dialog_standard_item,domains);
 
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             @Override
@@ -159,23 +144,32 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     @Override
-    public void loginSuccess(boolean manager) {
+    public void loginSuccess(boolean patient) {
         hideProgressBar();
-        showSuccessfulLogin(manager);
-        if (!manager) {
-            navigateToOverviewActivity();
-        }
-        else {
-            showServerOptionDialog();
-        }
+        showSuccessfulLogin();
+        navigateToOverviewActivity(patient);
+
     }
 
+    @Override
+    public void requestFailed() {
+        Log.d(this.getClass().getSimpleName(), "Login request Failed! Communication went wrong");
+        hideProgressBar();
+        showFailedLogin(getResources().getString(R.string.server_error));
+    }
 
+    @Override
+    public void loginFailed(String code) {
+        Log.d(this.getClass().getSimpleName(), "Login failed! Reason: " + code);
+        hideProgressBar();
+        showFailedLogin(code);
+    }
 
     @Override
     public void loginFailed() {
+        Log.d(this.getClass().getSimpleName(), "Login Failed!");
         hideProgressBar();
-        showFailedLogin();
+        showFailedLogin(getResources().getString(R.string.login_failed));
 
     }
 
@@ -184,29 +178,66 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     }
 
-    private void showFailedLogin() {
+
+
+
+    public void showRoleOptionDialog(ArrayList<String> roles) {
+        hideProgressBar();
+        showSuccessfulLogin();
+        AlertDialog.Builder roleOptionBuilder = new AlertDialog.Builder(this);
+        roleOptionBuilder.setCustomTitle(getLayoutInflater().inflate(R.layout.role_dialog_title, null));
+        String[] rolesArray = roles.toArray(new String[roles.size()]);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dialog_standard_item, rolesArray);
+        roleOptionBuilder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (adapter.getItem(which).equalsIgnoreCase(UserRoleEnum.ROLE_PATIENT.toString()))
+                    navigateToOverviewActivity(true);
+                else navigateToOverviewActivity(false);
+            }
+        });
+       AlertDialog roleOptionDialog = roleOptionBuilder.create();
+        roleOptionDialog.getWindow().setBackgroundDrawableResource(R.drawable.white_dialog_window);
+        roleOptionDialog.show();
+    }
+
+    private void showEmptyCredentials() {
+        hideProgressBar();
+        showFailedLogin(getResources().getString(R.string.empty_creds));
+    }
+
+    private void showFailedLogin(String string) {
         authenticatingFinishedImageView.setImageResource(R.drawable.ic_error_36dp);
         authenticatingFinishedImageView.setVisibility(View.VISIBLE);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_animation);
         authenticatingFinishedImageView.startAnimation(animation);
         authenticatingProgressText.setTextColor(ContextCompat.getColor(this, R.color.colorError));
-        authenticatingProgressText.setText(getResources().getText(R.string.login_failed));
+        authenticatingProgressText.setText(string);
+    }
+
+    public void showServerOptionDialog() {
+        presenter.retrieveDomains();
+
     }
 
 
+
+    private void showAuthenticatingProgress() {
+        authenticatingProgressBar.setVisibility(View.VISIBLE);
+        authenticatingProgressText.setText(getResources().getText(R.string.Authenticating));
+        authenticatingProgressText.setTextColor(ContextCompat.getColor(this, R.color.colorAccent300));
+        authenticatingProgressText.setVisibility(View.VISIBLE);
+        authenticatingFinishedImageView.setVisibility(View.GONE);
+
+    }
     private void hideProgressBar() {
         authenticatingProgressBar.setVisibility(View.GONE);
     }
 
-    private void showSuccessfulLogin(boolean manager) {
-        if (manager) {
-            authenticatingFinishedImageView.setImageResource(R.drawable.ic_fingerprint);
-            authenticatingProgressText.setText(getResources().getText(R.string.login_manager));
-        }
-        else {
-            authenticatingFinishedImageView.setImageResource(R.drawable.ic_check_circle_36dp);
-            authenticatingProgressText.setText(getResources().getText(R.string.login_succes));
-        }
+    private void showSuccessfulLogin() {
+        authenticatingFinishedImageView.setImageResource(R.drawable.ic_check_circle_36dp);
+        authenticatingProgressText.setText(getResources().getText(R.string.login_succes));
+
         authenticatingFinishedImageView.setVisibility(View.VISIBLE);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_animation);
         authenticatingFinishedImageView.startAnimation(animation);
