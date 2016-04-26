@@ -1,5 +1,6 @@
 package br.com.managersystems.guardasaude.exams.mainmenu;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,10 +13,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
 
     final int PAGE_COUNT = 3;
     private String tabtitles[];
+    SharedPreferences sharedPreferences;
 
-    public TabsPagerAdapter(FragmentManager fm, String[] tabtitles) {
+    public TabsPagerAdapter(FragmentManager fm, String[] tabtitles, SharedPreferences sp) {
         super(fm);
         this.tabtitles = tabtitles;
+        this.sharedPreferences = sp;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
 
             case 0:
                 ExamOverviewFragment examOverviewFragment = new ExamOverviewFragment();
+                examOverviewFragment.setSharedPreferences(sharedPreferences);
                 return examOverviewFragment;
 
             case 1:

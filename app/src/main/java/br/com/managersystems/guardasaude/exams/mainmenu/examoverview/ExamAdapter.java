@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,9 +18,9 @@ import br.com.managersystems.guardasaude.exams.domain.Exam;
 
 public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder> {
     private LayoutInflater inflater;
-    List<Exam> examList = Collections.emptyList();
+    List<Exam> examList;
 
-    public ExamAdapter(Context context, List<Exam> examList) {
+    public ExamAdapter(Context context,List<Exam> examList) {
         inflater = LayoutInflater.from(context);
         this.examList = examList;
     }
@@ -33,7 +34,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
     @Override
     public void onBindViewHolder(ExamViewHolder holder, int position) {
         Exam current = examList.get(position);
-        holder.examId.setText(current.getId());
+        holder.examId.setText(current.getId().toString());
         holder.patientName.setText(current.getPatient());
         holder.clinicName.setText(current.getReportingPhysicianName());
         holder.executionDate.setText(current.getExecutionDate());

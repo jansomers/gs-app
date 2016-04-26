@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 public interface ExamListApi {
 
     @GET("mobile/listExams")
-    Call<ExamList> getExamList(
+    Call<ExamList> getExamsList(
             @Query("user") String username,
             @Query("token") String token,
             @Query("orderBy") String orderBy,
