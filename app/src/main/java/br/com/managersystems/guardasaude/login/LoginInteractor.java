@@ -94,7 +94,7 @@ public class LoginInteractor implements ILoginInteractor {
 
     @Override
     public void saveUserInfo(SharedPreferences.Editor editor) {
-        Log.d(this.getClass().getSimpleName(), "Succesful Auhorization... Saving token, user, expiredate");
+        Log.d(this.getClass().getSimpleName(), "Successful Authorization... Saving token, user, expiredate");
         editor.putString("token", MobileToken.getToken());
         editor.putString("user", MobileToken.getBaseUser().getIdentifierB64());
         editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
