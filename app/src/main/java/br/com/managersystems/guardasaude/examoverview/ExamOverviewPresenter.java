@@ -2,7 +2,6 @@ package br.com.managersystems.guardasaude.examoverview;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.managersystems.guardasaude.examoverview.domain.Exam;
 import br.com.managersystems.guardasaude.examoverview.domain.ExamList;
@@ -12,6 +11,7 @@ public class ExamOverviewPresenter implements IExamOverviewPresenter, OnCallExam
     ExamListInteractor examListInteractor;
     ExamOverviewFragment examOverview;
 
+
     public ExamOverviewPresenter(ExamOverviewFragment examOverview) {
         this.examOverview = examOverview;
         examListInteractor = new ExamListInteractor();
@@ -19,7 +19,7 @@ public class ExamOverviewPresenter implements IExamOverviewPresenter, OnCallExam
 
     @Override
     public void getExamList() {
-        examListInteractor.getExamList(this,"doctor","acf92b98ead7e4874f54b80b14981dba1da3956dd428bd93e41e140c640edd5d",null,null,null,null,null,"ROLE_HEALTH_PROFESSIONAL");
+        examListInteractor.getExamList(this,"doctor","db55f27d4222c7919d15b4c04a5aa66c450d782945cacb31eff32a83c49c0640",null,null,null,null,null,"ROLE_HEALTH_PROFESSIONAL");
     }
 
     @Override
