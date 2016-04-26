@@ -8,4 +8,6 @@ public interface ILoginPresenter {
     void authorizeLogin(String email, String password);
     String[] encodeLogin(String email, String password);
     void retrieveDomains();
+
+    void saveInfo();
 }
