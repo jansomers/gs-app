@@ -11,6 +11,7 @@ public class MobileToken {
 
     private static BaseUser baseUser;
     private static String token;
+    private static  String role;
     private Date startDate;
     //dd/MM/yyyy(HH:mm:ss)
     private static Date endDate;

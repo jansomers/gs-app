@@ -25,8 +25,7 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
 
     public LoginPresenter(LoginActivity loginActivity, SharedPreferences sp) {
         this.loginActivity = loginActivity;
-        this.sp = this.sp;
-        editor = this.sp.edit();
+        this.sp = sp;
         loginInteractor = new LoginInteractor();
         domainInteractor = new DomainInteractor(new ArrayList<AccessDomain>());
         base64Interactor = new Base64Interactor();
@@ -56,8 +55,8 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     }
 
     @Override
-    public void saveInfo() {
-        loginInteractor.saveUserInfo(editor);
+    public void saveInfo(boolean patient) {
+        loginInteractor.saveUserInfo(this, sp.edit(),patient);
     }
 
     @Override
@@ -76,6 +75,12 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
         loginActivity.loginFailed(code);
 
     }
+
+    @Override
+    public void complete() {
+
+    }
+
     @Override
     public void onAuthorizeSuccess(ArrayList<String> roles, MobileToken token) {
         if (roles.isEmpty()) {

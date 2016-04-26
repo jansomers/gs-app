@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import br.com.managersystems.guardasaude.login.domain.AuthorisationResult;
 import br.com.managersystems.guardasaude.login.domain.BaseUser;
 import br.com.managersystems.guardasaude.login.domain.MobileToken;
+import br.com.managersystems.guardasaude.login.domain.UserRoleEnum;
 import br.com.managersystems.guardasaude.util.AuthenticationApi;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -93,11 +94,15 @@ public class LoginInteractor implements ILoginInteractor {
     }
 
     @Override
-    public void saveUserInfo(SharedPreferences.Editor editor) {
+    public void saveUserInfo(OnLoginFinishedListener listener, SharedPreferences.Editor editor, boolean patient) {
         Log.d(this.getClass().getSimpleName(), "Succesful Auhorization... Saving token, user, expiredate");
         editor.putString("token", MobileToken.getToken());
         editor.putString("user", MobileToken.getBaseUser().getIdentifierB64());
         editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
+        editor.putString("role",patient ? UserRoleEnum.ROLE_PATIENT.toString() : UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString());
+        editor.commit();
+        listener.complete();
+
     }
 
 }

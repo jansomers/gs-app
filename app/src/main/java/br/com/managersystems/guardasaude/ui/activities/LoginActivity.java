@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         //TODO Redirect to login if no accesstoken
         presenter = new LoginPresenter(this,sp);
         init();
@@ -145,7 +147,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void loginSuccess(boolean patient) {
         hideProgressBar();
-        presenter.saveInfo();
+        presenter.saveInfo(patient);
         showSuccessfulLogin();
         navigateToOverviewActivity(patient);
 

@@ -9,5 +9,5 @@ public interface ILoginPresenter {
     String[] encodeLogin(String email, String password);
     void retrieveDomains();
 
-    void saveInfo();
+    void saveInfo(boolean patient);
 }
