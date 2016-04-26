@@ -11,7 +11,5 @@ public interface OnLoginFinishedListener {
     void onHandleRequestLoginAttemptFailure();
     void onAuthorizeSuccess(ArrayList<String> roles, MobileToken token);
     void onAuthorizeFailure(String code);
-
-
-
+    void complete();
 }

@@ -10,5 +10,5 @@ import br.com.managersystems.guardasaude.login.domain.AuthorisationResult;
 public interface ILoginInteractor {
     void handleRequestLoginAttempt(OnLoginFinishedListener listener, String email64, String password64);
     void handleAuthorisationResult(OnLoginFinishedListener listener, AuthorisationResult authorisationResult, String email64, String password64);
-    void saveUserInfo(SharedPreferences.Editor editor);
+    void saveUserInfo(OnLoginFinishedListener listener, SharedPreferences.Editor editor, boolean patient);
 }

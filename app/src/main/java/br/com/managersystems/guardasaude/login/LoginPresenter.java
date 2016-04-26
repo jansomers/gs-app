@@ -23,10 +23,9 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     Base64Interactor base64Interactor;
     SharedPreferences.Editor editor;
 
-    public LoginPresenter(LoginActivity loginActivity) {
+    public LoginPresenter(LoginActivity loginActivity, SharedPreferences sp) {
         this.loginActivity = loginActivity;
         this.sp = sp;
-        editor = sp.edit();
         loginInteractor = new LoginInteractor();
         domainInteractor = new DomainInteractor(new ArrayList<AccessDomain>());
         base64Interactor = new Base64Interactor();
@@ -56,6 +55,11 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     }
 
     @Override
+    public void saveInfo(boolean patient) {
+        loginInteractor.saveUserInfo(this, sp.edit(),patient);
+    }
+
+    @Override
     public void onHandleRequestLoginAttemptSuccess(OnLoginFinishedListener listener, AuthorisationResult authorisationResult, String email64, String password64) {
         loginInteractor.handleAuthorisationResult(listener,authorisationResult,email64,password64);
     }
@@ -71,6 +75,12 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
         loginActivity.loginFailed(code);
 
     }
+
+    @Override
+    public void complete() {
+
+    }
+
     @Override
     public void onAuthorizeSuccess(ArrayList<String> roles, MobileToken token) {
         if (roles.isEmpty()) {
@@ -82,7 +92,7 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
             loginActivity.showRoleOptionDialog(roles);
         }
         else {
-            loginInteractor.saveUserInfo(editor);
+            /*loginInteractor.saveUserInfo(editor);*/
             if (roles.get(0).equals(UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString())) {
                 Log.d(this.getClass().getSimpleName(), "Health Professional Identified! Forwarding to view!");
                 loginActivity.loginSuccess(false);

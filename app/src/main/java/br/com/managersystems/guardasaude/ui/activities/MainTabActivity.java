@@ -1,7 +1,6 @@
 package br.com.managersystems.guardasaude.ui.activities;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,8 +36,9 @@ public class MainTabActivity extends AppCompatActivity {
     private void init() {
         setSupportActionBar(toolbar);
         tabtitles = new String[]{(String) getResources().getText(R.string.Exams), (String) getResources().getText(R.string.Notifications), (String) getResources().getText(R.string.Messages)};
-        viewPager.setAdapter(new TabsPagerAdapter(getSupportFragmentManager(), tabtitles,sp));
         getSharedPref();
+        viewPager.setAdapter(new TabsPagerAdapter(getSupportFragmentManager(), tabtitles,sp));
+
     }
 
     @Override
@@ -48,11 +48,8 @@ public class MainTabActivity extends AppCompatActivity {
     }
 
     public void getSharedPref() {
-        sp = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
-        String user= sp.getString("user",null);
-        editor = sp.edit();
-        editor.putString("role", getIntent().getStringExtra("role"));
-        editor.commit();
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
     }
 }
 

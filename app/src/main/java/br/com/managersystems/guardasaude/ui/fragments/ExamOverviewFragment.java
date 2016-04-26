@@ -1,4 +1,4 @@
-package br.com.managersystems.guardasaude.ui;
+package br.com.managersystems.guardasaude.ui.fragments;
 
 
 import android.content.SharedPreferences;
@@ -15,14 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import br.com.managersystems.guardasaude.R;
-import br.com.managersystems.guardasaude.examoverview.ExamAdapter;
-import br.com.managersystems.guardasaude.examoverview.ExamOverviewPresenter;
-import br.com.managersystems.guardasaude.examoverview.IExamOverview;
-import br.com.managersystems.guardasaude.examoverview.domain.Exam;
+import br.com.managersystems.guardasaude.exams.domain.Exam;
+import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.ExamAdapter;
+import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.ExamOverviewPresenter;
+import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.IExamOverview;
+import br.com.managersystems.guardasaude.ui.dialogs.NewExamDialogFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +39,10 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
     private ExamAdapter adapter;
     private SharedPreferences sp;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +50,6 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
 
         View view = inflater.inflate(R.layout.fragment_examoverview, container, false);
         ButterKnife.bind(this,view);
-
         presenter = new ExamOverviewPresenter(this,sp);
         presenter.getExamList();
 
