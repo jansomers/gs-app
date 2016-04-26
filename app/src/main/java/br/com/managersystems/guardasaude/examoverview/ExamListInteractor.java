@@ -1,9 +1,7 @@
 package br.com.managersystems.guardasaude.examoverview;
 
-import android.content.Context;
-import android.os.Handler;
+
 import android.util.Log;
-import android.widget.Toast;
 
 import br.com.managersystems.guardasaude.examoverview.domain.ExamList;
 import retrofit2.Call;
@@ -39,7 +37,7 @@ public class ExamListInteractor implements IExamListInteractor{
         if(examListApi==null){
             initiateRetrofit();
         }else{
-            Call<ExamList> call = examListApi.getExamList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
+            Call<ExamList> call = examListApi.getExamsList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
             call.enqueue(new Callback<ExamList>() {
                 @Override
                 public void onResponse(Call<ExamList> call, Response<ExamList> response) {

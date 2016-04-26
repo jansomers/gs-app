@@ -12,7 +12,6 @@ public class ExamOverviewPresenter implements IExamOverviewPresenter, OnCallExam
     ExamListInteractor examListInteractor;
     ExamOverviewFragment examOverview;
 
-
     public ExamOverviewPresenter(ExamOverviewFragment examOverview) {
         this.examOverview = examOverview;
         examListInteractor = new ExamListInteractor();
@@ -20,7 +19,7 @@ public class ExamOverviewPresenter implements IExamOverviewPresenter, OnCallExam
 
     @Override
     public void getExamList() {
-        examListInteractor.getExamList(this,"doctor","2a1ba1ec5122d5c747afa7d46968e5d07019503c9b1a109906d5577aadede0a4",null,null,null,null,null,"ROLE_HEALTH_PROFESSIONAL");
+        examListInteractor.getExamList(this,"doctor","acf92b98ead7e4874f54b80b14981dba1da3956dd428bd93e41e140c640edd5d",null,null,null,null,null,"ROLE_HEALTH_PROFESSIONAL");
     }
 
     @Override
