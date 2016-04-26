@@ -25,7 +25,6 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     public LoginPresenter(LoginActivity loginActivity, SharedPreferences sp) {
         this.loginActivity = loginActivity;
         this.sp = sp;
-        editor = sp.edit();
         loginInteractor = new LoginInteractor();
         domainInteractor = new DomainInteractor(new ArrayList<AccessDomain>());
         base64Interactor = new Base64Interactor();
@@ -90,10 +89,12 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     }
 
     private void saveInfo() {
+        editor = sp.edit();
         Log.d(this.getClass().getSimpleName(), "Succesful Auhorization... Saving token, user, expiredate");
         editor.putString("token", MobileToken.getToken());
         editor.putString("user", MobileToken.getBaseUser().getIdentifierB64());
         editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
+        editor.commit();
     }
 
 

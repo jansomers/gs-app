@@ -1,10 +1,12 @@
 package br.com.managersystems.guardasaude.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private LoginPresenter presenter;
     private final boolean VALIDCREDENTIALS = true;
     private SharedPreferences sp;
-
+    private final String MY_PREFS_NAME="MyPrefs";
 
 
     @Override
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        sp = getPreferences(MODE_PRIVATE);
+        sp = getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
         //TODO Redirect to login if no accesstoken
         presenter = new LoginPresenter(this, sp);
         init();
@@ -113,7 +115,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         intent.putExtra("role", patient ? UserRoleEnum.ROLE_PATIENT.toString() : UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString());
         Log.d(this.getClass().getSimpleName(), "Navigating to Maintabactivity as: " + intent.getStringExtra("role"));
         startActivity(intent);
-
     }
 
 

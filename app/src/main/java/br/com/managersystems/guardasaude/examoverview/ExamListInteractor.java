@@ -41,7 +41,7 @@ public class ExamListInteractor implements IExamListInteractor{
                 if (examListApi == null) {
                     examListApi = initiateRetrofit();
                 }
-                Call<ExamList> call = examListApi.getExamList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
+                Call<ExamList> call = examListApi.getExamsList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
                 call.enqueue(new Callback<ExamList>() {
                     @Override
                     public void onResponse(Call<ExamList> call, Response<ExamList> response) {
@@ -57,23 +57,6 @@ public class ExamListInteractor implements IExamListInteractor{
 
             }
         }, 2000);
-        /*if(examListApi==null){
-            examListApi = initiateRetrofit();
-        }else{
-            System.out.println("Examlistapi" + examListApi.getClass());
-            Call<ExamList> call = examListApi.getExamList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
-            call.enqueue(new Callback<ExamList>() {
-                @Override
-                public void onResponse(Call<ExamList> call, Response<ExamList> response) {
-                    Log.d(this.getClass().getSimpleName(), "Call happened");
-                }
-
-                @Override
-                public void onFailure(Call<ExamList> call, Throwable t) {
-                    Log.d(this.getClass().getSimpleName(), "Call failed");
-                }
-            });*/
-
     }
 
 

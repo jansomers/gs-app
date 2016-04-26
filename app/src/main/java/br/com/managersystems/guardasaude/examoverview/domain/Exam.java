@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Exam {
 
-    private Integer id;
+    private int id;
     private String identification;
     private String serviceName;
     private String patient;
