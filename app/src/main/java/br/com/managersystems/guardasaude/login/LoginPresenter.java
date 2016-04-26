@@ -5,9 +5,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import br.com.managersystems.guardasaude.login.domain.AuthorisationResult;
 import br.com.managersystems.guardasaude.login.domain.MobileToken;
 import br.com.managersystems.guardasaude.login.domain.UserRoleEnum;
-import br.com.managersystems.guardasaude.ui.LoginActivity;
+import br.com.managersystems.guardasaude.ui.activities.LoginActivity;
 import br.com.managersystems.guardasaude.util.Base64Interactor;
 
 /**
@@ -22,9 +23,10 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     Base64Interactor base64Interactor;
     SharedPreferences.Editor editor;
 
-    public LoginPresenter(LoginActivity loginActivity, SharedPreferences sp) {
+    public LoginPresenter(LoginActivity loginActivity) {
         this.loginActivity = loginActivity;
         this.sp = sp;
+        editor = sp.edit();
         loginInteractor = new LoginInteractor();
         domainInteractor = new DomainInteractor(new ArrayList<AccessDomain>());
         base64Interactor = new Base64Interactor();
@@ -54,6 +56,11 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
     }
 
     @Override
+    public void onHandleRequestLoginAttemptSuccess(OnLoginFinishedListener listener, AuthorisationResult authorisationResult, String email64, String password64) {
+        loginInteractor.handleAuthorisationResult(listener,authorisationResult,email64,password64);
+    }
+
+    @Override
     public void onHandleRequestLoginAttemptFailure() {
         loginActivity.requestFailed();
 
@@ -75,8 +82,7 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
             loginActivity.showRoleOptionDialog(roles);
         }
         else {
-            //TODO try to do in interactor
-            saveInfo();
+            loginInteractor.saveUserInfo(editor);
             if (roles.get(0).equals(UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString())) {
                 Log.d(this.getClass().getSimpleName(), "Health Professional Identified! Forwarding to view!");
                 loginActivity.loginSuccess(false);
@@ -88,14 +94,7 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
         }
     }
 
-    private void saveInfo() {
-        editor = sp.edit();
-        Log.d(this.getClass().getSimpleName(), "Succesful Auhorization... Saving token, user, expiredate");
-        editor.putString("token", MobileToken.getToken());
-        editor.putString("user", MobileToken.getBaseUser().getIdentifierB64());
-        editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
-        editor.commit();
-    }
+
 
 
     @Override

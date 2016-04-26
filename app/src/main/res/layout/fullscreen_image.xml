@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <br.com.managersystems.guardasaude.images.TouchImageView
+    <br.com.managersystems.guardasaude.exams.exammenu.images.TouchImageView
         android:id="@+id/imgDisplay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

@@ -1,6 +1,6 @@
 package br.com.managersystems.guardasaude.dummydata;
 
-import br.com.managersystems.guardasaude.Notifications.OnFinishListener;
+import br.com.managersystems.guardasaude.exams.mainmenu.notifications.OnFinishListener;
 
 public class DummyDataInteractor {
 

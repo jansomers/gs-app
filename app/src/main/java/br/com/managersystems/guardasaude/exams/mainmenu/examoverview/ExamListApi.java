@@ -1,0 +1,21 @@
+package br.com.managersystems.guardasaude.exams.mainmenu.examoverview;
+
+
+import br.com.managersystems.guardasaude.exams.domain.ExamList;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+public interface ExamListApi {
+
+    @GET("mobile/listExams")
+    Call<ExamList> getExamsList(
+            @Query("user") String username,
+            @Query("token") String token,
+            @Query("orderBy") String orderBy,
+            @Query("sortBy") String sortBy,
+            @Query("maxValue") String maxValue,
+            @Query("offsetValue")String offsetValue,
+            @Query("filterBy")String filterBy,
+            @Query("accessRole") String accessRole);
+}
