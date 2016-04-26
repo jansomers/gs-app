@@ -76,6 +76,7 @@ public class LoginPresenter implements ILoginPresenter, OnDomainRetrievedListene
             loginActivity.showRoleOptionDialog(roles);
         }
         else {
+            //TODO try to do in interactor
             saveInfo();
             if (roles.get(0).equals(UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString())) {
                 Log.d(this.getClass().getSimpleName(), "Health Professional Identified! Forwarding to view!");

@@ -4,7 +4,6 @@ package br.com.managersystems.guardasaude.ui;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,10 +42,10 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
         presenter = new ExamOverviewPresenter(this);
         presenter.getExamList();
 
-        recyclerView=(RecyclerView)view.findViewById(R.id.examOverviewList);
+       /* recyclerView=(RecyclerView)view.findViewById(R.id.examOverviewList);
         adapter = new ExamAdapter(getActivity(),this.examList);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));*/
 
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
         onClickFab();
