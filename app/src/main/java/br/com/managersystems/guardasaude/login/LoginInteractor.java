@@ -1,5 +1,6 @@
 package br.com.managersystems.guardasaude.login;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
@@ -57,7 +58,7 @@ public class LoginInteractor implements ILoginInteractor {
                         else {
                             AuthorisationResult authorisationResult = response.body();
                             //TODO listener aanspreken
-                            handleAuthorisationResult(listener, authorisationResult, email64, password64);
+                            listener.onHandleRequestLoginAttemptSuccess(listener, authorisationResult, email64, password64);
 
                         }
                     }
@@ -89,6 +90,14 @@ public class LoginInteractor implements ILoginInteractor {
             // Letting the presenter know we have a succesful authentication
             listener.onAuthorizeSuccess((ArrayList<String>) authorisationResult.getRoles(), token);
         }
+    }
+
+    @Override
+    public void saveUserInfo(SharedPreferences.Editor editor) {
+        Log.d(this.getClass().getSimpleName(), "Succesful Auhorization... Saving token, user, expiredate");
+        editor.putString("token", MobileToken.getToken());
+        editor.putString("user", MobileToken.getBaseUser().getIdentifierB64());
+        editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
     }
 
 }

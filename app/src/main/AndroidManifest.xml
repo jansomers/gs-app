@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:theme="@style/LoginTheme"
             >
             <intent-filter>
@@ -20,12 +20,12 @@
         </activity>
 
         <activity
-            android:name=".ui.MainTabActivity">
+            android:name=".ui.activities.MainTabActivity">
         </activity>
         <activity android:name=".ui.activities.ExamTabActivity">
 
         </activity>
-        <activity android:name=".ui.FullScreenImageActivity">
+        <activity android:name=".ui.activities.FullScreenImageActivity">
 
         </activity>
     </application>

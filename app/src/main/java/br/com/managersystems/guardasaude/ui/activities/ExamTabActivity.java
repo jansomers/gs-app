@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import br.com.managersystems.guardasaude.R;
-import br.com.managersystems.guardasaude.exammenu.ExamTabsPagerAdapter;
+import br.com.managersystems.guardasaude.exams.exammenu.ExamTabsPagerAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
