@@ -21,10 +21,8 @@ public class MainTabActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
-    private final String MY_PREFS_NAME="MyPrefs";
     private SharedPreferences sp;
     private String[] tabtitles;
-    SharedPreferences.Editor editor;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,6 @@ public class MainTabActivity extends AppCompatActivity {
         tabtitles = new String[]{(String) getResources().getText(R.string.Exams), (String) getResources().getText(R.string.Notifications), (String) getResources().getText(R.string.Messages)};
         getSharedPref();
         viewPager.setAdapter(new TabsPagerAdapter(getSupportFragmentManager(), tabtitles,sp));
-
     }
 
     @Override
@@ -49,7 +46,6 @@ public class MainTabActivity extends AppCompatActivity {
 
     public void getSharedPref() {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-
     }
 }
 

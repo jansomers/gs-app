@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Guardasaude</string>
     <string name="app_name_login">guarda saúde</string>
-    <string name="username">Username</string>
+    <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Login">Login</string>
     <string name="Authenticating">Authenticating...</string>
@@ -43,6 +43,7 @@
     <string name="server_error">Error: Server not responding</string>
     <string name="choose_role">Choose Role</string>
     <string name="empty_creds">Field(s) cannot be empty!</string>
+    <string name="ExamStatus">Exam Status</string>
     <string name="exam_type">Exam Type</string>
     <string name="exam_id">Exam Id</string>
     <string name="exam_clinic">Exam Clinic</string>

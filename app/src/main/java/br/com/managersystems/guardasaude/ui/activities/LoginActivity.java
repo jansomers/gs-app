@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private void init() {
         activateLogo();
         //TODO Remove after testing
-        setStartingCredentials("doctor", "admin");
+        setStartingCredentials("doctor2", "Admin1");
         instantiateProgressBar();
     }
     private void activateLogo() {
