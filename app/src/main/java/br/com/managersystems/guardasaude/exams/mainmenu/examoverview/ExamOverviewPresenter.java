@@ -2,8 +2,10 @@ package br.com.managersystems.guardasaude.exams.mainmenu.examoverview;
 
 
 import android.content.SharedPreferences;
+import android.support.v7.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.managersystems.guardasaude.exams.domain.Exam;
 import br.com.managersystems.guardasaude.exams.domain.ExamList;

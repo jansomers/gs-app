@@ -43,4 +43,5 @@
     <string name="server_error">Error: Server not responding</string>
     <string name="choose_role">Choose Role</string>
     <string name="empty_creds">Field(s) cannot be empty!</string>
+    <string name="ExamStatus">Exam Status</string>
 </resources>

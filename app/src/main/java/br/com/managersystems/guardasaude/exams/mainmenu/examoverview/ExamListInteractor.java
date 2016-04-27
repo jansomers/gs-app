@@ -35,9 +35,7 @@ public class ExamListInteractor implements IExamListInteractor{
     @Override
     public void getExamList(final OnCallExamListFinishedListener listener, final String userName, final String token, final String orderBy, final String sortBy, final String maxValue, final String offsetValue, final String filterBy, final String accesRole) {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+
                 if (examListApi == null) {
                     examListApi = initiateRetrofit();
                 }
@@ -55,8 +53,8 @@ public class ExamListInteractor implements IExamListInteractor{
                 });
 
 
-            }
-        }, 2000);
+
+
     }
 
 
