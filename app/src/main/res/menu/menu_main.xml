@@ -9,6 +9,13 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/action_sortby"
+        android:title="@string/SortBy"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/action_search"
         android:title="@string/menu_search"
         android:icon="@android:drawable/ic_menu_search"

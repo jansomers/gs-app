@@ -44,6 +44,9 @@
     <string name="choose_role">Choose Role</string>
     <string name="empty_creds">Field(s) cannot be empty!</string>
     <string name="ExamStatus">Exam Status</string>
+    <string name="SortBy">Sort By</string>
+    <string name="sort">Sort</string>
+    <string name="sortexams">Sort Exams</string>
     <string name="exam_type">Exam Type</string>
     <string name="exam_id">Exam Id</string>
     <string name="exam_clinic">Exam Clinic</string>
