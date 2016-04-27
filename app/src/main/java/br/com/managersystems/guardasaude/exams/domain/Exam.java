@@ -245,7 +245,7 @@ public class Exam implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{String.valueOf(this.id), this.identification,this.serviceName,this.patient,this.executionDate,this.status,this.referringPhysicianName,this.referringPhysicianProID,this.referringPhysicianName,this.referringPhysicianProID,this.reportLink});
+        dest.writeStringArray(new String[]{String.valueOf(this.id), this.identification, this.serviceName, this.patient, this.executionDate, this.status, this.referringPhysicianName, this.referringPhysicianProID, this.referringPhysicianName, this.referringPhysicianProID, this.reportLink});
     }
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Exam createFromParcel(Parcel in) {

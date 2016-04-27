@@ -18,7 +18,9 @@ public class ExamInteractor implements  IExamInteractor {
     @Override
     public void getExam(Intent intent) {
         Exam exam =intent.getParcelableExtra("exam");
-        if (exam.getId() != null) listener.onSucces(exam);
+        if (exam.getId() != null) {
+            listener.onSucces(exam);
+        }
         else listener.onFailure();
 
     }
