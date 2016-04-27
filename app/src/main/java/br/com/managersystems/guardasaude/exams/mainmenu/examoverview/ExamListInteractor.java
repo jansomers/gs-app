@@ -1,7 +1,6 @@
 package br.com.managersystems.guardasaude.exams.mainmenu.examoverview;
 
 
-import android.util.Log;
 import android.os.Handler;
 
 import br.com.managersystems.guardasaude.exams.domain.ExamList;
@@ -56,7 +55,7 @@ public class ExamListInteractor implements IExamListInteractor{
 
 
             }
-        }, 2000);
+        }, 100);
     }
 
 

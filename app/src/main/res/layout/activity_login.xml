@@ -48,7 +48,7 @@
                 android:id="@+id/gs_login_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/Username"
+                android:hint="@string/username"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colorPrimaryDark" />
         </android.support.design.widget.TextInputLayout>

@@ -11,6 +11,7 @@ import br.com.managersystems.guardasaude.login.domain.BaseUser;
 import br.com.managersystems.guardasaude.login.domain.MobileToken;
 import br.com.managersystems.guardasaude.login.domain.UserRoleEnum;
 import br.com.managersystems.guardasaude.util.AuthenticationApi;
+import br.com.managersystems.guardasaude.util.Base64Interactor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,6 +102,7 @@ public class LoginInteractor implements ILoginInteractor {
         editor.putString("expires", String.valueOf(MobileToken.getEndDate()));
         editor.putString("role",patient ? UserRoleEnum.ROLE_PATIENT.toString() : UserRoleEnum.ROLE_HEALTH_PROFESSIONAL.toString());
         editor.commit();
+        Log.d(this.getClass().getSimpleName(), "Token: " + MobileToken.getToken() + " + User: " + new Base64Interactor().decodeBase64ToString(MobileToken.getBaseUser().getIdentifierB64().getBytes()) + " + Expire date: " + MobileToken.getEndDate() + " committed to SharedPreferences");
         listener.complete();
 
     }

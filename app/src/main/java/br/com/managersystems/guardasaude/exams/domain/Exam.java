@@ -22,6 +22,21 @@ public class Exam {
     private List<Object> images = new ArrayList<Object>();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public Exam(int id, String identification, String serviceName, String patient, String executionDate, String status, String reportingPhysicianName, String reportingPhysicianProID, String referringPhysicianName, String referringPhysicianProID, String reportLink, List<Object> images) {
+        this.id = id;
+        this.identification = identification;
+        this.serviceName = serviceName;
+        this.patient = patient;
+        this.executionDate = executionDate;
+        this.status = status;
+        this.reportingPhysicianName = reportingPhysicianName;
+        this.reportingPhysicianProID = reportingPhysicianProID;
+        this.referringPhysicianName = referringPhysicianName;
+        this.referringPhysicianProID = referringPhysicianProID;
+        this.reportLink = reportLink;
+        this.images = images;
+    }
+
     /**
      *
      * @return
