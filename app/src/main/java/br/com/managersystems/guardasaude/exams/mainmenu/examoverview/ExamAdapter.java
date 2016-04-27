@@ -91,6 +91,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
     public void addAllExams(List<Exam> exams){
         this.examList = exams;
         notifyDataSetChanged();
+
     }
 
     class ExamViewHolder extends RecyclerView.ViewHolder{
