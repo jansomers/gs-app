@@ -21,7 +21,7 @@ import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.exams.domain.Exam;
 import br.com.managersystems.guardasaude.ui.fragments.ExamOverviewFragment;
 
-public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder> implements Filterable{
+public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder>{
     private LayoutInflater inflater;
     List<Exam> examList;
     Context context;
@@ -86,11 +86,6 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
 
     private String removeHoursFromDate(String date){
         return date.substring(0, date.length() - 5);
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new FilterCustomerSearch(this,examList);
     }
 
     public void addAllExams(List<Exam> exams){
