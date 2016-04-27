@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import br.com.managersystems.guardasaude.R;
+import br.com.managersystems.guardasaude.ui.fragments.ExamOverviewFragment;
 
+public class SortByDialogFragment extends DialogFragment {
 
-public class NewExamDialogFragment extends DialogFragment {
-
-    public NewExamDialogFragment() {
+    public SortByDialogFragment() {
     }
 
     @Override
@@ -20,18 +20,19 @@ public class NewExamDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.dialog_newxexam, null))
-                .setPositiveButton(R.string.find, new DialogInterface.OnClickListener() {
+        builder.setView(inflater.inflate(R.layout.dialog_sortby, null))
+                .setPositiveButton(R.string.sort, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO Search for new exam
+                        //TODO Sort items
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        NewExamDialogFragment.this.getDialog().cancel();
+                        SortByDialogFragment.this.getDialog().cancel();
                     }
-                }).setCustomTitle(getActivity().getLayoutInflater().inflate(R.layout.dialog_title_newexam,null));
+                }).setCustomTitle(getActivity().getLayoutInflater().inflate(R.layout.dialog_title_sortby,null));
+
         return builder.create();
     }
 }

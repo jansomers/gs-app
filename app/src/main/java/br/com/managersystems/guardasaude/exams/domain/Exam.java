@@ -46,20 +46,17 @@ public class Exam implements Parcelable {
     }
 
     public Exam(Parcel in){
-        String[] data = new String[10];
-
-        in.readStringArray(data);
-        this.id = Integer.parseInt(data[0]);
-        this.identification = data[1];
-        this.serviceName = data[2];
-        this.patient = data[3];
-        this.executionDate = data[4];
-        this.status = data[5];
-        this.reportingPhysicianName = data[6];
-        this.reportingPhysicianProID = data[7];
-        this.referringPhysicianName = data[8];
-        this.referringPhysicianProID = data[9];
-        this.reportLink = data[10];
+        this.id = in.readInt();
+        this.identification = in.readString();
+        this.serviceName = in.readString();
+        this.patient = in.readString();
+        this.executionDate = in.readString();
+        this.status = in.readString();
+        this.reportingPhysicianName = in.readString();
+        this.reportingPhysicianProID = in.readString();
+        this.referringPhysicianName = in.readString();
+        this.referringPhysicianProID = in.readString();
+        this.reportLink = in.readString();
     }
 
     /**
@@ -245,7 +242,17 @@ public class Exam implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{String.valueOf(this.id), this.identification,this.serviceName,this.patient,this.executionDate,this.status,this.referringPhysicianName,this.referringPhysicianProID,this.referringPhysicianName,this.referringPhysicianProID,this.reportLink});
+        dest.writeInt(this.id);
+        dest.writeString(this.identification);
+        dest.writeString(this.serviceName);
+        dest.writeString(this.patient);
+        dest.writeString(this.executionDate);
+        dest.writeString(this.status);
+        dest.writeString(this.reportingPhysicianName);
+        dest.writeString(this.reportingPhysicianProID);
+        dest.writeString(this.referringPhysicianName);
+        dest.writeString(this.referringPhysicianProID);
+        dest.writeString(this.reportLink);
     }
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public Exam createFromParcel(Parcel in) {

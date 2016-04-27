@@ -32,6 +32,7 @@ import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.ExamOvervie
 import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.IExamOverview;
 import br.com.managersystems.guardasaude.ui.activities.ExamTabActivity;
 import br.com.managersystems.guardasaude.ui.dialogs.NewExamDialogFragment;
+import br.com.managersystems.guardasaude.ui.dialogs.SortByDialogFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -82,12 +83,29 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
         searchView.setOnQueryTextListener(listener);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_sortby:
+                showSortByDialog();
+                return true;
+            case R.id.action_settings:
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
 
     @OnClick(R.id.fab)
     public void getNewExam() {
         NewExamDialogFragment newExamDialogFragment = new NewExamDialogFragment();
-        newExamDialogFragment.show(getActivity().getFragmentManager(), "dialog");
+        newExamDialogFragment.show(getActivity().getFragmentManager(), "NewExamDialog");
     }
+
+    public void showSortByDialog(){
+        SortByDialogFragment sortByDialogFragment = new SortByDialogFragment();
+        sortByDialogFragment.show(getActivity().getFragmentManager(),"SortByDialog");
+    }
+
 
     @Override
     public void onSuccess(ArrayList<Exam> exams) {
