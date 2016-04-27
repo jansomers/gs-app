@@ -51,7 +51,7 @@ public class InformationFragment extends Fragment implements IExamInformationVie
 
     ExamenInformationPresenter presenter;
     boolean commentsHidden;
-    final Exam DUMMY_EXAM = new Exam(167511113, "TMC56257", "RM ARTICULAR(PORATICULACAO)", "ATIDOR SILVA CORDOSO DOS SANTOS", "12/01/2016 12:10", "Finished", "JOHN SMITH", "CRMPR/98765", "JOSE CANDIDO VALENTE MALAGUIDO", "CRM SC/17989", "/mobile/getExamReport?user=doctor&exid=TMC56257", null);
+    //final Exam DUMMY_EXAM = new Exam(167511113, "TMC56257", "RM ARTICULAR(PORATICULACAO)", "ATIDOR SILVA CORDOSO DOS SANTOS", "12/01/2016 12:10", "Finished", "JOHN SMITH", "CRMPR/98765", "JOSE CANDIDO VALENTE MALAGUIDO", "CRM SC/17989", "/mobile/getExamReport?user=doctor&exid=TMC56257", null);
 
 
     @Override
@@ -66,21 +66,21 @@ public class InformationFragment extends Fragment implements IExamInformationVie
     }
 
     private void init() {
-        //
-        //presenter.retrieveInformation();
         commentsHidden = true;
-        showInformation();
-
+        presenter.retrieveInformation(getActivity().getIntent());
     }
 
     @Override
-    public void showInformation() {
-        examIdTextView.setText(DUMMY_EXAM.getId().toString());
-        examTypeTextView.setText(DUMMY_EXAM.getServiceName());
-        examPatientTextView.setText(StringUtils.anyCaseToNameCase(DUMMY_EXAM.getPatient()));
+    public void showInformation(Exam exam) {
+        hideableLayout.setVisibility(View.VISIBLE);
+        commentsBtn.setVisibility(View.VISIBLE);
+        imagesBtn.setVisibility(View.VISIBLE);
+        examIdTextView.setText(exam.getId().toString());
+        examTypeTextView.setText(exam.getServiceName());
+        examPatientTextView.setText(StringUtils.anyCaseToNameCase(exam.getPatient()));
         examClinicTextView.setText(StringUtils.anyCaseToNameCase("DUMMY CLINIC"));
-        examDateTextView.setText(DUMMY_EXAM.getExecutionDate().split(" ")[0]);
-        examRepPhysTextView.setText(StringUtils.anyCaseToNameCase(DUMMY_EXAM.getReportingPhysicianName()));
+        examDateTextView.setText(exam.getExecutionDate().split(" ")[0]);
+        examRepPhysTextView.setText(StringUtils.anyCaseToNameCase(exam.getReportingPhysicianName()));
 
     }
 
@@ -104,6 +104,17 @@ public class InformationFragment extends Fragment implements IExamInformationVie
 
     @Override
     public void navigateToImages() {
+
+    }
+
+    @Override
+    public void showInformationError() {
+        hideableLayout.setVisibility(View.GONE);
+        commentsBtn.setVisibility(View.GONE);
+        imagesBtn.setVisibility(View.GONE);
+        examIdTextView.setText(getText(R.string.information_error));
+        examTypeTextView.setText(getText(R.string.information_error_response));
+
 
     }
 

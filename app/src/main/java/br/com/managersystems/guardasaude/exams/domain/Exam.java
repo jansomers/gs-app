@@ -46,7 +46,7 @@ public class Exam implements Parcelable {
     }
 
     public Exam(Parcel in){
-        String[] data = new String[13];
+        String[] data = new String[10];
 
         in.readStringArray(data);
         this.id = Integer.parseInt(data[0]);

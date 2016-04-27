@@ -1,5 +1,8 @@
 package br.com.managersystems.guardasaude.exams.exammenu.information;
 
+import android.content.Intent;
+
+import br.com.managersystems.guardasaude.exams.domain.Exam;
 import br.com.managersystems.guardasaude.ui.fragments.InformationFragment;
 
 /**
@@ -16,8 +19,20 @@ public class ExamenInformationPresenter implements IExamInformationPresenter, On
     }
 
     @Override
-    public void retrieveInformation() {
-        examInteractor.getExam();
+    public void retrieveInformation(Intent intent) {
+        examInteractor.getExam(intent);
+
+    }
+
+    @Override
+    public void onFailure() {
+        informationFragment.showInformationError();
+
+    }
+
+    @Override
+    public void onSucces(Exam exam) {
+        informationFragment.showInformation(exam);
 
     }
 }

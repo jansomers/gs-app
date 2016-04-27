@@ -52,4 +52,7 @@
     <string name="exam_reporting_phys">Reporting Physician</string>
     <string name="information">Information</string>
     <string name="comment_example">Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken.</string>
+    <string name="information_error">NOT FOUND</string>
+    <string name="information_error_response">Try again or contact an administrator</string>
+    <string name="username">Username</string>
 </resources>
