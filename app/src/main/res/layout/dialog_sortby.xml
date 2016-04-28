@@ -10,12 +10,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:layout_marginTop="12dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
+            android:layout_marginRight="24dp"
             android:id="@+id/sortAsc">
 
         <ImageView
@@ -62,22 +63,24 @@
             android:id="@+id/radio_patient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/patient" />
+            android:text="@string/patient"
+            android:textColor="@color/colorTextColor"
+            />
 
         <RadioButton
             android:id="@+id/radio_identification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/identification" />
+            android:text="@string/identification"
+            android:textColor="@color/colorTextColor"/>
 
         <RadioButton
             android:id="@+id/radio_executionDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/executionDate"
-            android:checked="false" />
+            android:textColor="@color/colorTextColor" />
 
-        <!-- TODO ADD CLINIC -->
 
     </RadioGroup>
 
