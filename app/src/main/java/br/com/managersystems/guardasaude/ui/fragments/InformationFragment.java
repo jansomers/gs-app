@@ -75,10 +75,10 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         hideableLayout.setVisibility(View.VISIBLE);
         commentsBtn.setVisibility(View.VISIBLE);
         imagesBtn.setVisibility(View.VISIBLE);
-        examIdTextView.setText(exam.getId().toString());
+        examIdTextView.setText(exam.getIdentification());
         examTypeTextView.setText(exam.getServiceName());
         examPatientTextView.setText(StringUtils.anyCaseToNameCase(exam.getPatient()));
-        examClinicTextView.setText(StringUtils.anyCaseToNameCase("DUMMY CLINIC"));
+        examClinicTextView.setText(StringUtils.anyCaseToNameCase(exam.getClinicName()));
         examDateTextView.setText(exam.getExecutionDate().split(" ")[0]);
         examRepPhysTextView.setText(StringUtils.anyCaseToNameCase(exam.getReportingPhysicianName()));
 
@@ -99,7 +99,6 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         commentsBtn.setText(getText(R.string.comments));
         commentsBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_less_24dp, 0);
         commentsHidden = true;
-
     }
 
     @Override
@@ -114,8 +113,6 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         imagesBtn.setVisibility(View.GONE);
         examIdTextView.setText(getText(R.string.information_error));
         examTypeTextView.setText(getText(R.string.information_error_response));
-
-
     }
 
     @OnClick(R.id.comments_btn)

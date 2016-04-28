@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_local_hospital_16dp"
-                    android:gravity="center"
+                    android:gravity="left"
                      />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_marginTop="15dp"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_person_16dp"
-                    android:gravity="center"
+                    android:gravity="left"
                      />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_marginTop="15dp"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_today_16dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     />
 
             </LinearLayout>

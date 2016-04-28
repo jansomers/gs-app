@@ -50,8 +50,8 @@ public class Exam implements Parcelable {
     public Exam(Parcel in){
         this.id = in.readInt();
         this.identification = in.readString();
-        this.clinicName = in.readString();
         this.serviceName = in.readString();
+        this.clinicName = in.readString();
         this.patient = in.readString();
         this.executionDate = in.readString();
         this.status = in.readString();
