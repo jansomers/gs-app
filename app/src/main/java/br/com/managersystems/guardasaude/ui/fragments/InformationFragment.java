@@ -2,16 +2,19 @@ package br.com.managersystems.guardasaude.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import br.com.managersystems.guardasaude.R;
 import br.com.managersystems.guardasaude.exams.domain.Exam;
-import br.com.managersystems.guardasaude.exams.exammenu.information.ExamenInformationPresenter;
+import br.com.managersystems.guardasaude.exams.exammenu.information.ExamPresenter;
 import br.com.managersystems.guardasaude.exams.exammenu.information.IExamInformationView;
 import br.com.managersystems.guardasaude.util.AnimationUtils;
 import br.com.managersystems.guardasaude.util.StringUtils;
@@ -26,6 +29,9 @@ public class InformationFragment extends Fragment implements IExamInformationVie
 
     @Bind(R.id.gs_exam_information_exam_type)
     TextView examTypeTextView;
+
+    @Bind(R.id.gs_exam_information_status)
+    ImageView examStatusImageView;
 
     @Bind(R.id.gs_exam_information_clinic_id)
     TextView examClinicTextView;
@@ -49,7 +55,7 @@ public class InformationFragment extends Fragment implements IExamInformationVie
     Button imagesBtn;
 
 
-    ExamenInformationPresenter presenter;
+    ExamPresenter presenter;
     boolean commentsHidden;
     //final Exam DUMMY_EXAM = new Exam(167511113, "TMC56257", "RM ARTICULAR(PORATICULACAO)", "ATIDOR SILVA CORDOSO DOS SANTOS", "12/01/2016 12:10", "Finished", "JOHN SMITH", "CRMPR/98765", "JOSE CANDIDO VALENTE MALAGUIDO", "CRM SC/17989", "/mobile/getExamReport?user=doctor&exid=TMC56257", null);
 
@@ -60,23 +66,32 @@ public class InformationFragment extends Fragment implements IExamInformationVie
 
         View view = inflater.inflate(R.layout.fragment_information, container, false);
         ButterKnife.bind(this, view);
-        presenter = new ExamenInformationPresenter(this);
+        presenter = new ExamPresenter(this);
         init();
         return view;
     }
 
     private void init() {
-        commentsHidden = true;
+        Log.d(getClass().getSimpleName(), "Initializing Information Fragment...");
+        Log.d(getClass().getSimpleName(), "Organizing startup views...");
+        if (hideableLayout.getVisibility() == View.VISIBLE) commentsHidden = true;
+        else {
+            hideComments();
+            init();
+        }
+        Log.d(getClass().getSimpleName(), "Notifying the presenter to retrieve the exam information...");
         presenter.retrieveInformation(getActivity().getIntent());
     }
 
     @Override
     public void showInformation(Exam exam) {
+        Log.d(getClass().getSimpleName(), "Received success from Presenter... Showing Information");
         hideableLayout.setVisibility(View.VISIBLE);
         commentsBtn.setVisibility(View.VISIBLE);
         imagesBtn.setVisibility(View.VISIBLE);
-        examIdTextView.setText(exam.getId().toString());
+        examIdTextView.setText(exam.getIdentification());
         examTypeTextView.setText(exam.getServiceName());
+        examStatusImageView.setImageDrawable(ContextCompat.getDrawable(this.getActivity(),exam.getStatus().equals("Finished") ? R.drawable.ic_check_circle_36dp : R.drawable.ic_clock));
         examPatientTextView.setText(StringUtils.anyCaseToNameCase(exam.getPatient()));
         examClinicTextView.setText(StringUtils.anyCaseToNameCase("DUMMY CLINIC"));
         examDateTextView.setText(exam.getExecutionDate().split(" ")[0]);
@@ -109,6 +124,7 @@ public class InformationFragment extends Fragment implements IExamInformationVie
 
     @Override
     public void showInformationError() {
+        Log.d(getClass().getSimpleName(), "Received failure from presenter... Showing Information Error");
         hideableLayout.setVisibility(View.GONE);
         commentsBtn.setVisibility(View.GONE);
         imagesBtn.setVisibility(View.GONE);

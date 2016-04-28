@@ -13,20 +13,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ExamListInteractor implements IExamListInteractor{
 
     private final String BASE_URL= "https://www.guardasaude.com.br/";
-    private ExamListApi examListApi;
+    private ExamApi examApi;
 
 
     public ExamListInteractor() {
-        examListApi = initiateRetrofit();
+        examApi = initiateRetrofit();
     }
 
     @Override
-    public ExamListApi initiateRetrofit() {
+    public ExamApi initiateRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        return retrofit.create(ExamListApi.class);
+        return retrofit.create(ExamApi.class);
     }
 
 
@@ -37,10 +37,10 @@ public class ExamListInteractor implements IExamListInteractor{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (examListApi == null) {
-                    examListApi = initiateRetrofit();
+                if (examApi == null) {
+                    examApi = initiateRetrofit();
                 }
-                Call<ExamList> call = examListApi.getExamsList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
+                Call<ExamList> call = examApi.getExamsList(userName,token,orderBy,sortBy,maxValue,offsetValue,filterBy,accesRole);
                 call.enqueue(new Callback<ExamList>() {
                     @Override
                     public void onResponse(Call<ExamList> call, Response<ExamList> response) {

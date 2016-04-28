@@ -5,7 +5,6 @@ import android.content.Intent;
 /**
  * Created by Jan on 26/04/2016.
  */
-public interface IExamInformationPresenter {
+public interface IExamPresenter {
     void retrieveInformation(Intent intent);
-
 }

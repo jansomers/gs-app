@@ -1,9 +1,6 @@
 package br.com.managersystems.guardasaude.ui.fragments;
 
 
-import android.app.SearchManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -145,7 +142,7 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
                 for (int i = 0; i < examList.size(); i++) {
 
                     final String patientName = examList.get(i).getPatient().toLowerCase();
-                    final String examId = examList.get(i).getId().toString();
+                    final String examId = examList.get(i).getIdentification();
                     //TODO add clinicName
                     if (patientName.contains(query) || examId.contains(query)) {
                         filteredList.add(examList.get(i));
