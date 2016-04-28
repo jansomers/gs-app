@@ -114,7 +114,6 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         commentsBtn.setText(getText(R.string.comments));
         commentsBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_less_24dp, 0);
         commentsHidden = true;
-
     }
 
     @Override
@@ -130,8 +129,6 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         imagesBtn.setVisibility(View.GONE);
         examIdTextView.setText(getText(R.string.information_error));
         examTypeTextView.setText(getText(R.string.information_error_response));
-
-
     }
 
     @OnClick(R.id.comments_btn)
