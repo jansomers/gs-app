@@ -66,6 +66,7 @@ public class ImagesPresenter implements IImagesPresenter {
     @Override
     public ArrayList<Bitmap> getImagesForExam() {
         final ArrayList<Bitmap> imageItems = new ArrayList<>();
+        //TODO get images for exam
         TypedArray imgs = imagesFragment.getResources().obtainTypedArray(R.array.image_ids);
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(imagesFragment.getResources(), imgs.getResourceId(i, -1));
@@ -84,6 +85,5 @@ public class ImagesPresenter implements IImagesPresenter {
     public int getColumnWidth() {
         return columnWidth;
     }
-
 
 }

@@ -18,7 +18,7 @@
             app:hintTextAppearance="@style/TextAppearance.App.Authentication.Progress">
 
             <EditText
-                android:id="@+id/gs_new_exam_username"
+                android:id="@+id/new_exam_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
@@ -34,7 +34,7 @@
             app:hintTextAppearance="@style/TextAppearance.App.Authentication.Progress">
 
             <EditText
-                android:id="@+id/gs_new_exam_protocol"
+                android:id="@+id/new_exam_protocol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/Protocol"

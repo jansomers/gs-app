@@ -58,4 +58,12 @@
     <string name="information_error">NOT FOUND</string>
     <string name="information_error_response">Try again or contact an administrator</string>
     <string name="username">Username</string>
+    <string name="patient">Patient</string>
+    <string name="report">Report</string>
+    <string name="reporting">Reporting Physician</string>
+    <string name="referring">Referring Physician</string>
+    <string name="executionDate">Execution Date</string>
+    <string name="asc">ASC</string>
+    <string name="desc">DESC</string>
+    <string name="identification">Identification</string>
 </resources>

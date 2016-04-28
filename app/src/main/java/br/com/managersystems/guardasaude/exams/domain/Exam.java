@@ -14,6 +14,7 @@ public class Exam implements Parcelable {
     private int id;
     private String identification;
     private String serviceName;
+    private String clinicName;
     private String patient;
     private String executionDate;
     private String status;
@@ -29,10 +30,11 @@ public class Exam implements Parcelable {
     public Exam() {
     }
 
-    public Exam(int id, String identification, String serviceName, String patient, String executionDate, String status, String reportingPhysicianName, String reportingPhysicianProID, String referringPhysicianName, String referringPhysicianProID, String reportLink, List<Object> images, Map<String, Object> additionalProperties) {
+    public Exam(int id, String identification, String serviceName,String clinicName, String patient, String executionDate, String status, String reportingPhysicianName, String reportingPhysicianProID, String referringPhysicianName, String referringPhysicianProID, String reportLink, List<Object> images, Map<String, Object> additionalProperties) {
         this.id = id;
         this.identification = identification;
         this.serviceName = serviceName;
+        this.clinicName = clinicName;
         this.patient = patient;
         this.executionDate = executionDate;
         this.status = status;
@@ -48,6 +50,7 @@ public class Exam implements Parcelable {
     public Exam(Parcel in){
         this.id = in.readInt();
         this.identification = in.readString();
+        this.clinicName = in.readString();
         this.serviceName = in.readString();
         this.patient = in.readString();
         this.executionDate = in.readString();
@@ -99,6 +102,15 @@ public class Exam implements Parcelable {
      */
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
+    }
+
+
+    public String getClinicName() {
+        return clinicName;
+    }
+
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
     /**
@@ -245,6 +257,7 @@ public class Exam implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.identification);
         dest.writeString(this.serviceName);
+        dest.writeString(this.clinicName);
         dest.writeString(this.patient);
         dest.writeString(this.executionDate);
         dest.writeString(this.status);

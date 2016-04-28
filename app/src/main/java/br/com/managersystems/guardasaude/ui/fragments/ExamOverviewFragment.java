@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ import br.com.managersystems.guardasaude.exams.domain.Exam;
 import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.ExamAdapter;
 import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.ExamOverviewPresenter;
 import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.IExamOverview;
+import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.NewExamListener;
+import br.com.managersystems.guardasaude.exams.mainmenu.examoverview.SortDialogListener;
 import br.com.managersystems.guardasaude.ui.activities.ExamTabActivity;
 import br.com.managersystems.guardasaude.ui.dialogs.NewExamDialogFragment;
 import br.com.managersystems.guardasaude.ui.dialogs.SortByDialogFragment;
@@ -38,13 +41,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ExamOverviewFragment extends Fragment implements IExamOverview {
+public class ExamOverviewFragment extends Fragment implements IExamOverview, SortDialogListener, NewExamListener {
 
     @Bind(R.id.examOverviewList)
     RecyclerView recyclerView;
 
     @Bind(R.id.fab)
     FloatingActionButton fab;
+
 
     private ExamOverviewPresenter presenter;
     private ExamAdapter adapter;
@@ -89,8 +93,6 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
             case R.id.action_sortby:
                 showSortByDialog();
                 return true;
-            case R.id.action_settings:
-                return true;
             default: return super.onOptionsItemSelected(item);
         }
     }
@@ -98,14 +100,20 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
     @OnClick(R.id.fab)
     public void getNewExam() {
         NewExamDialogFragment newExamDialogFragment = new NewExamDialogFragment();
-        newExamDialogFragment.show(getActivity().getFragmentManager(), "NewExamDialog");
+        newExamDialogFragment.setTargetFragment(this,0);
+        newExamDialogFragment.show(getFragmentManager(), "NewExamDialog");
     }
 
     public void showSortByDialog(){
         SortByDialogFragment sortByDialogFragment = new SortByDialogFragment();
-        sortByDialogFragment.show(getActivity().getFragmentManager(),"SortByDialog");
+        sortByDialogFragment.setTargetFragment(this,0);
+        sortByDialogFragment.show(getFragmentManager(), "dialog");
     }
 
+    @Override
+    public void sortExamListBy(String orderBy,String sortBy){
+        presenter.getSortedExamList(sortBy,orderBy);
+    }
 
     @Override
     public void onSuccess(ArrayList<Exam> exams) {
@@ -145,7 +153,7 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
                 for (int i = 0; i < examList.size(); i++) {
 
                     final String patientName = examList.get(i).getPatient().toLowerCase();
-                    final String examId = examList.get(i).getId().toString();
+                    final String examId = examList.get(i).getIdentification().toLowerCase();
                     //TODO add clinicName
                     if (patientName.contains(query) || examId.contains(query)) {
                         filteredList.add(examList.get(i));
@@ -165,4 +173,8 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview {
     }
 
 
+    @Override
+    public void findNewExam(String username, String protocol) {
+        //TODO add a new exam
+    }
 }

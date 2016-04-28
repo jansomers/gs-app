@@ -39,9 +39,9 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
     @Override
     public void onBindViewHolder(ExamViewHolder holder, int position) {
         final Exam current = examList.get(position);
-        holder.examId.setText(current.getId().toString());
+        holder.examId.setText(current.getIdentification());
         holder.patientName.setText(toCamelCase(current.getPatient()));
-        holder.clinicName.setText(current.getReportingPhysicianName());
+        holder.clinicName.setText(current.getClinicName());
         holder.executionDate.setText(removeHoursFromDate(current.getExecutionDate()));
         holder.statusText.setText(current.getStatus());
         if(current.getStatus().equalsIgnoreCase("Finished")){
