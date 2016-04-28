@@ -1,6 +1,8 @@
 package br.com.managersystems.guardasaude.util;
 
 
+import org.jsoup.Jsoup;
+
 public class StringUtils {
 
     public static String anyCaseToNameCase(String input) {
@@ -36,5 +38,9 @@ public class StringUtils {
         }
 
         return titleCase.toString();
+    }
+
+    public static String html2text(String html) {
+        return Jsoup.parse(html).text();
     }
 }

@@ -45,10 +45,11 @@ public class ReportFragment extends Fragment implements IExamReportView {
     @Override
     public void showReport(String report) {
         Log.d(getClass().getSimpleName(), "Received report from presenter.. Showing webview!");
-        Log.d(getClass().getSimpleName(), report);
        /* reportView.getSettings().setJavaScriptEnabled(true);
         reportView.loadData(report, "text/html", "UTF-8");*/
-        textView.setText(Html.fromHtml(report));
+        String text = String.valueOf(Html.fromHtml(report));
+        String withOutComments = text.replaceAll("<!--*-->", " ");
+        textView.setText(withOutComments);
 
     }
 

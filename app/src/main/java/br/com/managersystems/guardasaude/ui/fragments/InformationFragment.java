@@ -93,7 +93,7 @@ public class InformationFragment extends Fragment implements IExamInformationVie
         examTypeTextView.setText(exam.getServiceName());
         examStatusImageView.setImageDrawable(ContextCompat.getDrawable(this.getActivity(),exam.getStatus().equals("Finished") ? R.drawable.ic_check_circle_36dp : R.drawable.ic_clock));
         examPatientTextView.setText(StringUtils.anyCaseToNameCase(exam.getPatient()));
-        examClinicTextView.setText(StringUtils.anyCaseToNameCase("DUMMY CLINIC"));
+        examClinicTextView.setText(StringUtils.anyCaseToNameCase(exam.getClinicName()));
         examDateTextView.setText(exam.getExecutionDate().split(" ")[0]);
         examRepPhysTextView.setText(StringUtils.anyCaseToNameCase(exam.getReportingPhysicianName()));
 
