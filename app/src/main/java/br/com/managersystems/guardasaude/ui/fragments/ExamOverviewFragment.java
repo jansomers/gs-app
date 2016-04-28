@@ -153,7 +153,7 @@ public class ExamOverviewFragment extends Fragment implements IExamOverview, Sor
                 for (int i = 0; i < examList.size(); i++) {
 
                     final String patientName = examList.get(i).getPatient().toLowerCase();
-                    final String examId = examList.get(i).getIdentification().toLowerCase();
+                    final String examId = examList.get(i).getIdentification();
                     //TODO add clinicName
                     if (patientName.contains(query) || examId.contains(query)) {
                         filteredList.add(examList.get(i));

@@ -62,17 +62,11 @@ public class Exam implements Parcelable {
         this.reportLink = in.readString();
     }
 
-    /**
-     * @return The id
-     */
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    /**
-     * @param id The id
-     */
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

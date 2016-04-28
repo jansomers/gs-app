@@ -2,11 +2,12 @@ package br.com.managersystems.guardasaude.exams.mainmenu.examoverview;
 
 
 import br.com.managersystems.guardasaude.exams.domain.ExamList;
+import br.com.managersystems.guardasaude.exams.domain.ReportResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface ExamListApi {
+public interface ExamApi {
 
     @GET("mobile/listExams")
     Call<ExamList> getExamsList(
@@ -18,4 +19,10 @@ public interface ExamListApi {
             @Query("offsetValue")String offsetValue,
             @Query("filterBy")String filterBy,
             @Query("accessRole") String accessRole);
+
+    @GET("mobile/getExamReport")
+    Call<ReportResponse> getReport(
+            @Query("user") String user,
+            @Query("token") String token,
+            @Query("exid") String identification);
 }
